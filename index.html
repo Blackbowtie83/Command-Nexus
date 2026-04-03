@@ -49,7 +49,6 @@
             .chat-panel { position: fixed; bottom: 0; left: 0; right: 0; height: 55vh; z-index: 40; }
         }
         @page { size: 5.5in 8.5in; margin: 0.5in; }
-
         @media print {
             body { background: white !important; color: black !important; }
             .sidebar, .chat-panel, .header-bg, button:not(.print-only), select { display: none !important; }
@@ -61,14 +60,7 @@
         }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #4ade80; border-radius: 9999px; }
-
-        .app-footer {
-            font-size: 10px;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-            color: #ffffff;
-            opacity: 0.75;
-        }
+        .app-footer { font-size: 10px; font-weight: 300; letter-spacing: 0.5px; color: #ffffff; opacity: 0.75; }
     </style>
 </head>
 <body class="flex h-screen overflow-hidden flex-col md:flex-row">
@@ -149,32 +141,60 @@
         </div>
     </div>
 
-    <!-- FULL DEPARTMENT OF WAR DISCLAIMER POPUP -->
+    <!-- FULL UPDATED DISCLAIMER POPUP WITH ALL REQUESTED SECTIONS -->
     <div id="disclaimer-popup" class="fixed inset-0 bg-black/98 flex items-center justify-center z-[20000] hidden backdrop-blur-xl">
         <div class="bg-zinc-900 max-w-2xl w-full mx-4 rounded-[2.5rem] p-10 border-2 border-red-900/50 shadow-[0_0_50px_rgba(153,27,27,0.2)]">
             <div class="text-center mb-8">
                 <div class="inline-block px-4 py-1 rounded-full border border-red-500 text-red-500 text-[10px] font-black tracking-[0.2em] uppercase mb-4">Regulatory Compliance Notice</div>
                 <h2 class="text-white text-3xl font-black tracking-tighter uppercase italic">Legal & Operational Guardrails</h2>
             </div>
-            <div class="space-y-6 text-zinc-400 text-sm leading-relaxed overflow-y-auto max-h-[50vh] pr-4 custom-scrollbar">
+            
+            <div class="space-y-6 text-zinc-400 text-sm leading-relaxed overflow-y-auto max-h-[55vh] pr-4 custom-scrollbar">
+                
+                <!-- 1. No Affiliation or Endorsement (Department of War) -->
                 <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-emerald-500">
                     <p class="text-emerald-400 font-bold mb-1 underline uppercase text-xs">1. No Affiliation or Endorsement</p>
-                    <p>This application (the "Software") is an independent, private venture. It is not affiliated with, authorized by, sponsored by, or in any way officially connected to the Department of War, the United States Army, or any other military service branch.</p>
+                    <p>This application (the "Software") is an independent, private venture. It is not affiliated with, authorized by, sponsored by, or in any way officially connected to the Department of War, the United States Army, or any other military service branch. Any use of the term "Department of War" within this disclaimer or the Software is intended to reflect the current 2025 organizational structure and does not imply government endorsement.</p>
                 </div>
+
+                <!-- 2. DOD MEMO 22-001 COMPLIANCE -->
+                <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-green-500">
+                    <p class="text-green-400 font-bold mb-1 underline uppercase text-xs">DOD MEMO 22-001 COMPLIANCE</p>
+                    <p>This application operates as a Local-Only Client. No data is transmitted via unauthorized cloud services, third-party APIs, or external servers. All persistence is restricted to the browser's localStorage.</p>
+                </div>
+
+                <!-- 3. OPTICAL TRANSFER (QR SYNC) PROTOCOL -->
+                <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-yellow-500">
+                    <p class="text-yellow-400 font-bold mb-1 underline uppercase text-xs">OPTICAL TRANSFER (QR SYNC) PROTOCOL</p>
+                    <p>QR Sync is a peer-to-peer visual transfer. To mitigate "bit-rot" or optical scanning errors, Users MUST manually verify frequencies and PACE entries on the receiving device immediately following a sync.</p>
+                </div>
+
+                <!-- 4. SECURITY CLASSIFICATION WARNING -->
+                <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-red-500">
+                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">SECURITY CLASSIFICATION WARNING</p>
+                    <p>This application is UNCLASSIFIED // FOR TRAINING ONLY. Users are responsible for ensuring no classified information is entered or stored in localStorage. Any accidental input of classified data must be immediately purged using the Emergency Wipe function.</p>
+                </div>
+
+                <!-- 5. Non-Official Planning Tool -->
                 <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-amber-500">
-                    <p class="text-amber-400 font-bold mb-1 underline uppercase text-xs">2. Non-Official Planning Tool</p>
-                    <p>The MDMP and TLP outputs, including all base Operation Orders (OPORDs) and supporting Annexes, are generated using artificial intelligence modeled after FM 5-0. These products are for educational and simulation purposes only.</p>
+                    <p class="text-amber-400 font-bold mb-1 underline uppercase text-xs">5. Non-Official Planning Tool</p>
+                    <p>The MDMP and TLP outputs, including all base Operation Orders (OPORDs) and supporting Annexes (A through Z), are generated using artificial intelligence modeled after FM 5-0. These products are for educational and simulation purposes only. They do not constitute official military orders or authorized tactical directives.</p>
                 </div>
+
+                <!-- 6. Responsibility for Annex Integrity -->
                 <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-red-500">
-                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">3. Responsibility for Annex Integrity</p>
-                    <p>All generated Annexes must be reviewed by qualified human staff officers to ensure tactical synchronization and doctrinal accuracy.</p>
+                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">6. Responsibility for Annex Integrity</p>
+                    <p>All generated Annexes must be reviewed by qualified human staff officers to ensure tactical synchronization and doctrinal accuracy. The Software may flag certain data as [DATA MISSING] if the source document is incomplete.</p>
                 </div>
+
+                <!-- 7. No Guarantee of Doctrinal Success -->
                 <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-red-500">
-                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">4. No Guarantee of Doctrinal Success</p>
-                    <p>Users are responsible for the final validation of all plans.</p>
+                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">7. No Guarantee of Doctrinal Success</p>
+                    <p>While the Software aims to facilitate effective action in the face of unforeseen events, the developer makes no guarantees regarding the "doctrinal correctness" of any specific mission approach. Users are responsible for the final validation of all plans.</p>
                 </div>
             </div>
-            <button onclick="acknowledgeDisclaimer()" class="mt-10 w-full py-5 bg-red-700 hover:bg-red-600 text-white rounded-2xl text-lg font-black transition-all shadow-lg active:scale-95 uppercase tracking-widest">Acknowledge & Initialize</button>
+
+            <button onclick="acknowledgeDisclaimer()" class="mt-10 w-full py-5 bg-red-700 hover:bg-red-600 text-white rounded-2xl text-lg font-black transition-all shadow-lg active:scale-95 uppercase tracking-widest">I Acknowledge All Guardrails – Initialize Application</button>
         </div>
     </div>
 
@@ -190,6 +210,7 @@
     </div>
 
     <script>
+        // FULL EXPANDED CODE - NO ABBREVIATIONS
         let notes = JSON.parse(localStorage.getItem('nexus_notes') || "[]");
         let fuse;
         let map;
@@ -248,7 +269,7 @@
                 if (staffKey === 'sgm') { msg.pitch = 0.5; msg.rate = 0.8; }
                 if (staffKey === 'maj') { msg.pitch = 0.9; msg.rate = 1.2; }
                 if (staffKey === 'ltc') { msg.pitch = 1.1; msg.rate = 1.0; }
-                if (typeof addStaffMessage === 'function') addStaffMessage(staffKey, text);
+                if (typeof addStaffMessage === 'function') addStaffMessage('bot', text);
                 window.speechSynthesis.speak(msg);
             }, 150);
         }
@@ -528,7 +549,6 @@
             const situation = combinedText.match(/SIT:(.*?)($|MSN:|EXEC:)/s)?.[1] || "No change from OPORD.";
             const mission = combinedText.match(/MSN:(.*?)($|EXEC:|SUS:)/s)?.[1] || "Continue current operations.";
             const execution = combinedText.match(/EXEC:(.*?)($|SUS:|SIG:)/s)?.[1] || combinedText.substring(0, 500);
-
             const area = document.getElementById('content-area');
             area.innerHTML = `
                 <div class="max-w-4xl mx-auto p-8 bg-white text-black font-serif shadow-2xl border-t-8 border-emerald-900 rounded-b-xl">
@@ -659,6 +679,7 @@
         function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
         function toggleSidebarIfMobile() { if (window.innerWidth < 768) toggleSidebar(); }
         function toggleChat() { document.getElementById('chat-panel').classList.toggle('hidden'); }
+
         function emergencyWipe() {
             if (confirm("PROTOCOL WARNING: This will permanently purge all local notes, cached doctrine, and API tokens. Confirm Destruct?")) {
                 localStorage.clear();
@@ -693,8 +714,17 @@
             return "SGM STUBBORN: Roger that, sir. Noted in the journal.";
         }
 
-        function initFuzzySearch() {
-            fuse = new Fuse([], { keys: ['number', 'title'], threshold: 0.35 });
+        function acknowledgeDisclaimer() {
+            localStorage.setItem('disclaimerAcknowledged', 'true');
+            document.getElementById('disclaimer-popup').classList.add('hidden');
+        }
+
+        function tacNotify(msg, type) {
+            const toast = document.createElement("div");
+            toast.className = `fixed bottom-5 right-5 p-4 rounded-lg border-2 z-[9999] tac-toast ${type === 'WARN' ? 'bg-red-900 border-red-500' : 'bg-emerald-900 border-emerald-500'}`;
+            toast.innerHTML = `<span class="font-bold text-xs">[${type}]</span> <span class="text-sm">${msg}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
         }
 
         function switchTab(tabId) {
@@ -707,7 +737,6 @@
             else if (tabId === 10) renderNotebook();
             else if (tabId === 14) renderBattleDrills();
             else if (tabId === 15) renderSyncMatrix();
-            else if (tabId === 16) { /* MDMP/TLP + COA */ }
             else if (tabId === 17) renderSignaleerTab();
             else {
                 area.innerHTML = `<div class="text-center py-20 text-emerald-300">Tab ${tabId} loaded</div>`;
@@ -717,8 +746,7 @@
         window.onload = () => {
             if (!localStorage.getItem('disclaimerAcknowledged')) document.getElementById('disclaimer-popup').classList.remove('hidden');
             switchTab(17);
-            initFuzzySearch();
-            addStaffMessage("bot", "MAJ ANGER: Full application loaded with complete Department of War disclaimer.");
+            addStaffMessage("bot", "MAJ ANGER: Full application loaded with complete updated disclaimer popup.");
             tacNotify("Application Initialized – All Systems Go", "SUCCESS");
         };
     </script>
