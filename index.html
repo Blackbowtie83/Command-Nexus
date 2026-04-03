@@ -18,7 +18,12 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
         :root { --od-green: #3a4f3a; }
-        body { font-family: 'Inter', system_ui, sans-serif; background-color: var(--od-green); color: #e5e7eb; }
+        body { 
+            font-family: 'Inter', system_ui, sans-serif; 
+            background-color: var(--od-green); 
+            color: #e5e7eb; 
+            padding-top: 2.25rem; 
+        }
         .header-bg { background-color: #2f3f2f; }
         .sidebar-bg { background-color: #2a362a; height: 100dvh; }
         .chat-bg { background-color: #1f2a1f; }
@@ -45,7 +50,6 @@
         }
         @page { size: 5.5in 8.5in; margin: 0.5in; }
 
-        /* PROFESSIONAL PRINT CSS */
         @media print {
             body { background: white !important; color: black !important; }
             .sidebar, .chat-panel, .header-bg, button:not(.print-only), select { display: none !important; }
@@ -57,6 +61,14 @@
         }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #4ade80; border-radius: 9999px; }
+
+        .app-footer {
+            font-size: 10px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            opacity: 0.75;
+        }
     </style>
 </head>
 <body class="flex h-screen overflow-hidden flex-col md:flex-row">
@@ -65,15 +77,13 @@
     <div class="fixed top-0 left-0 right-0 h-9 header-bg border-b border-gray-700 flex items-center justify-center z-50 unclassified">UNCLASSIFIED // FOR TRAINING ONLY</div>
 
     <!-- Mobile Top Bar -->
-    <div class="md:hidden h-14 header-bg border-b border-gray-700 px-4 flex items-center justify-between z-50 mt-9">
+    <div class="md:hidden h-14 header-bg border-b border-gray-700 px-4 flex items-center justify-between z-50">
         <div class="flex items-center gap-3">
-            <svg width="40" height="50" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M30 10 L55 55 L30 80 Z" stroke="#e5e7eb" stroke-width="8" stroke-linejoin="round"/>
-                <path d="M30 80 L30 110" stroke="#e5e7eb" stroke-width="8" stroke-linejoin="round"/>
-                <path d="M70 10 L45 55 L70 80 Z" stroke="#e5e7eb" stroke-width="8" stroke-linejoin="round"/>
-                <path d="M70 80 L70 110" stroke="#e5e7eb" stroke-width="8" stroke-linejoin="round"/>
-                <line x1="30" y1="75" x2="70" y2="75" stroke="#e5e7eb" stroke-width="10" stroke-linejoin="round"/>
-                <text x="28" y="115" fill="#e5e7eb" font-size="18" font-family="Inter" font-weight="700">DUO A</text>
+            <svg width="40" height="50" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-emerald-300">
+                <path d="M25 15 L50 60 L25 90" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M75 15 L50 60 L75 90" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="50" y1="60" x2="50" y2="80" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+                <text x="28" y="115" fill="currentColor" font-size="18" font-family="Inter" font-weight="700">DUO A</text>
             </svg>
             <button onclick="toggleSidebar()" class="text-2xl">☰</button>
             <h1 class="text-xl font-semibold tracking-tighter text-emerald-300">COMMAND NEXUS</h1>
@@ -83,15 +93,13 @@
     </div>
 
     <!-- Sidebar -->
-    <div id="sidebar" class="sidebar w-72 sidebar-bg border-r border-gray-700 flex flex-col md:static overflow-y-auto mt-9 md:mt-0">
+    <div id="sidebar" class="sidebar w-72 sidebar-bg border-r border-gray-700 flex flex-col md:static overflow-y-auto">
         <div class="p-6 border-b border-gray-700 flex items-center gap-3">
-            <svg width="40" height="50" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M30 10 L55 55 L30 80 Z" stroke="#e5e7eb" stroke-width="8" stroke-linejoin="round"/>
-                <path d="M30 80 L30 110" stroke="#e5e7eb" stroke-width="8" stroke-linejoin="round"/>
-                <path d="M70 10 L45 55 L70 80 Z" stroke="#e5e7eb" stroke-width="8" stroke-linejoin="round"/>
-                <path d="M70 80 L70 110" stroke="#e5e7eb" stroke-width="8" stroke-linejoin="round"/>
-                <line x1="30" y1="75" x2="70" y2="75" stroke="#e5e7eb" stroke-width="10" stroke-linejoin="round"/>
-                <text x="28" y="115" fill="#e5e7eb" font-size="18" font-family="Inter" font-weight="700">DUO A</text>
+            <svg width="40" height="50" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-emerald-300">
+                <path d="M25 15 L50 60 L25 90" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M75 15 L50 60 L75 90" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="50" y1="60" x2="50" y2="80" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+                <text x="28" y="115" fill="currentColor" font-size="18" font-family="Inter" font-weight="700">DUO A</text>
             </svg>
             <h1 class="text-2xl font-semibold tracking-tighter text-emerald-300">COMMAND NEXUS</h1>
         </div>
@@ -105,7 +113,7 @@
             <a onclick="switchTab(16);toggleSidebarIfMobile()" class="tab-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-emerald-800" data-tab="16">📋 MDMP / TLP + COA</a>
             <a onclick="switchTab(17);toggleSidebarIfMobile()" class="tab-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-emerald-800" data-tab="17">📡 Signaleer / S6</a>
             <div class="mt-8 pt-4 border-t border-emerald-900/50">
-                <button onclick="emergencyWipe()" class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-900/20 hover:bg-red-600 text-red-400 hover:text-white border border-red-900 rounded-xl transition-all duration-300 group">
+                <button onclick="emergencyWipe()" class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-900/20 hover:bg-red-600 text-red-400 hover:text-red-500 border border-red-900 rounded-xl transition-all duration-300 group animate-pulse hover:animate-none">
                     <span class="text-lg">🔥</span>
                     <span class="font-bold tracking-widest text-xs">EMERGENCY WIPE</span>
                 </button>
@@ -114,8 +122,11 @@
     </div>
 
     <!-- Main Content -->
-    <div class="flex-1 flex flex-col main-content content-bg mt-9 md:mt-0">
+    <div class="flex-1 flex flex-col main-content content-bg">
         <div class="flex-1 p-4 md:p-6 overflow-auto" id="content-area"></div>
+        <div class="app-footer text-center py-3 border-t border-white/10 text-[10px] font-light tracking-widest">
+            Proudly crafted by a Buckeye who still believes The Game is a personality trait.
+        </div>
     </div>
 
     <!-- Staff Chat -->
@@ -138,7 +149,7 @@
         </div>
     </div>
 
-    <!-- ZERO-TRACE DISCLAIMER POPUP -->
+    <!-- FULL DEPARTMENT OF WAR DISCLAIMER POPUP -->
     <div id="disclaimer-popup" class="fixed inset-0 bg-black/98 flex items-center justify-center z-[20000] hidden backdrop-blur-xl">
         <div class="bg-zinc-900 max-w-2xl w-full mx-4 rounded-[2.5rem] p-10 border-2 border-red-900/50 shadow-[0_0_50px_rgba(153,27,27,0.2)]">
             <div class="text-center mb-8">
@@ -147,16 +158,20 @@
             </div>
             <div class="space-y-6 text-zinc-400 text-sm leading-relaxed overflow-y-auto max-h-[50vh] pr-4 custom-scrollbar">
                 <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-emerald-500">
-                    <p class="text-emerald-400 font-bold mb-1 underline uppercase text-xs">DoD Memo 22-001 Compliance</p>
-                    <p>This application operates as a <strong>Local-Only Client</strong>. No data is transmitted via unauthorized cloud services, third-party APIs, or external servers. All persistence is restricted to the browser's <code>localStorage</code>.</p>
+                    <p class="text-emerald-400 font-bold mb-1 underline uppercase text-xs">1. No Affiliation or Endorsement</p>
+                    <p>This application (the "Software") is an independent, private venture. It is not affiliated with, authorized by, sponsored by, or in any way officially connected to the Department of War, the United States Army, or any other military service branch.</p>
                 </div>
                 <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-amber-500">
-                    <p class="text-amber-400 font-bold mb-1 underline uppercase text-xs">Optical Transfer (QR Sync) Protocol</p>
-                    <p>QR Sync is a peer-to-peer visual transfer. To mitigate "bit-rot" or optical scanning errors, <strong>Users MUST manually verify frequencies and PACE entries</strong> on the receiving device immediately following a sync.</p>
+                    <p class="text-amber-400 font-bold mb-1 underline uppercase text-xs">2. Non-Official Planning Tool</p>
+                    <p>The MDMP and TLP outputs, including all base Operation Orders (OPORDs) and supporting Annexes, are generated using artificial intelligence modeled after FM 5-0. These products are for educational and simulation purposes only.</p>
                 </div>
                 <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-red-500">
-                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">Security Classification Warning</p>
-                    <p>STRICTLY FOR UNCLASSIFIED / TRAINING USE ONLY. Do not input real-world COMSEC keys, restricted frequencies, or classified operational data. Use for simulation and instructional purposes only.</p>
+                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">3. Responsibility for Annex Integrity</p>
+                    <p>All generated Annexes must be reviewed by qualified human staff officers to ensure tactical synchronization and doctrinal accuracy.</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-red-500">
+                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">4. No Guarantee of Doctrinal Success</p>
+                    <p>Users are responsible for the final validation of all plans.</p>
                 </div>
             </div>
             <button onclick="acknowledgeDisclaimer()" class="mt-10 w-full py-5 bg-red-700 hover:bg-red-600 text-white rounded-2xl text-lg font-black transition-all shadow-lg active:scale-95 uppercase tracking-widest">Acknowledge & Initialize</button>
@@ -175,36 +190,157 @@
     </div>
 
     <script>
-        // Core variables and all previous functions (FRAGO parser, Sync Matrix, Raid animation, maps, blackout, staff chat, etc.) are preserved
         let notes = JSON.parse(localStorage.getItem('nexus_notes') || "[]");
         let fuse;
         let map;
         let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-        const drills = { /* full drill database including Raid from prior version */ };
+        const drills = {
+            react_contact: [
+                { text: "CONTACT! ELEMENT RECEIVES FIRE. DISMOUNT AND SEEK COVER.", staff: "sgm", units: [{id: 'SQD', x: 400, y: 400, fire: true}], eny: [{id: 'MG', x: 400, y: 100}] },
+                { text: "RETURN FIRE. SQUAD LEADER LOCATES ENEMY. GAIN FIRE SUPERIORITY.", staff: "maj", units: [{id: 'SQD', x: 400, y: 380, fire: true}], eny: [{id: 'MG', x: 400, y: 100}] },
+                { text: "SQUAD GAINS SUPREMACY. S-L DETERMINES COA: ATTACK OR BREAK CONTACT.", staff: "ltc", units: [{id: 'A', x: 350, y: 380, fire: true}, {id: 'B', x: 450, y: 380, fire: true}], eny: [{id: 'MG', x: 400, y: 100}] }
+            ],
+            squad_attack: [
+                { text: "SQUAD IN COLUMN. ALPHA TEAM LEADING. PREPARE FOR CONTACT.", staff: "maj", units: [{id: 'A', x: 400, y: 450}, {id: 'B', x: 400, y: 500}] },
+                { text: "CONTACT! ALPHA TEAM SUPPRESSES ENEMY POSITION. BASE OF FIRE SET.", staff: "sgm", units: [{id: 'A', x: 400, y: 300, fire: true}, {id: 'B', x: 400, y: 350}], eny: [{id: 'MG', x: 400, y: 100}] },
+                { text: "BRAVO TEAM MANEUVERS TO ENEMY FLANK. ALPHA SHIFTS FIRE.", staff: "maj", units: [{id: 'A', x: 400, y: 300, fire: true}, {id: 'B', x: 200, y: 250}], eny: [{id: 'MG', x: 400, y: 100}] },
+                { text: "BRAVO ASSAULTS THROUGH OBJECTIVE. DESTROY ENEMY ON SIGHT.", staff: "sgm", units: [{id: 'A', x: 400, y: 300, fire: true}, {id: 'B', x: 380, y: 120}], eny: [{id: 'MG', x: 400, y: 100, dead: true}] },
+                { text: "LOA REACHED. CONSOLIDATE AND REORGANIZE. PREPARE SITREP.", staff: "ltc", units: [{id: 'A', x: 420, y: 80}, {id: 'B', x: 380, y: 80}] }
+            ],
+            raid: [
+                { text: "RAID INITIATED. ELEMENT MOVING TO ORP (OBJECTIVE RALLY POINT).", staff: "ltc", units: [{id: 'SEC', x: 100, y: 450}, {id: 'SUP', x: 120, y: 450}, {id: 'ASL', x: 140, y: 450}] },
+                { text: "SUPPORT ELEMENT SET. OPEN FIRE ON OBJECTIVE. INITIATE SUPPRESSION.", staff: "sgm", units: [{id: 'SEC', x: 100, y: 100}, {id: 'SUP', x: 400, y: 350, fire: true}, {id: 'ASL', x: 140, y: 450}], eny: [{id: 'OBJ', x: 400, y: 100}] },
+                { text: "ASSAULT ELEMENT MOVING TO BREACH. SUPPORT SHIFT FIRE.", staff: "maj", units: [{id: 'SEC', x: 100, y: 100}, {id: 'SUP', x: 400, y: 350, fire: true}, {id: 'ASL', x: 350, y: 150}], eny: [{id: 'OBJ', x: 400, y: 100}] },
+                { text: "OBJECTIVE DESTROYED. WITHDRAWING TO ORP. RED, WHITE, BLUE PLAN.", staff: "ltc", units: [{id: 'SEC', x: 100, y: 100}, {id: 'SUP', x: 120, y: 450}, {id: 'ASL', x: 140, y: 450}], eny: [{id: 'OBJ', x: 400, y: 100, dead: true}] }
+            ],
+            break_contact: [
+                { text: "ENGAGED BY SUPERIOR FORCE. PREPARE TO BREAK CONTACT.", staff: "ltc", units: [{id: 'SQD', x: 400, y: 200, fire: true}], eny: [{id: 'TNK', x: 400, y: 50}] },
+                { text: "S-L ORDERS BREAK CONTACT. POP SMOKE! ALPHA TEAM BOUNDS REAR.", staff: "sgm", units: [{id: 'A', x: 400, y: 350}, {id: 'B', x: 400, y: 200, fire: true, smoke: true}], eny: [{id: 'TNK', x: 400, y: 50}] },
+                { text: "ALPHA SET. BRAVO TEAM BOUNDS REAR. COVERING FIRE!", staff: "maj", units: [{id: 'A', x: 400, y: 350, fire: true}, {id: 'B', x: 400, y: 550}], eny: [{id: 'TNK', x: 400, y: 50}] }
+            ],
+            react_ambush: [
+                { text: "NEAR AMBUSH! RETURN FIRE IMMEDIATELY. ASSAULT THROUGH!", staff: "sgm", units: [{id: 'SQD', x: 400, y: 300}], eny: [{id: 'AMB', x: 400, y: 260}] },
+                { text: "DESTROY AMBUSHERS. DO NOT STOP. PUSH THROUGH THE KILL ZONE.", staff: "maj", units: [{id: 'SQD', x: 400, y: 240, fire: true}], eny: [{id: 'AMB', x: 400, y: 260, dead: true}] },
+                { text: "THREAT NEUTRALIZED. ESTABLISH 360 SECURITY. REPORT STATUS.", staff: "ltc", units: [{id: 'SQD', x: 400, y: 180}] }
+            ]
+        };
 
-        // === FINAL DEPLOYMENT FUNCTIONS ===
-        function acknowledgeDisclaimer() {
-            localStorage.setItem('disclaimerAcknowledged', 'true');
-            document.getElementById('disclaimer-popup').classList.add('hidden');
-            tacNotify("Operator Credentials Verified", "SUCCESS");
+        function playRadioClick(duration = 0.12) {
+            const bufferSize = audioCtx.sampleRate * duration;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'bandpass'; filter.frequency.value = 1200;
+            noise.connect(filter); filter.connect(audioCtx.destination);
+            noise.start();
         }
 
-        function tacNotify(msg, type) {
-            const log = document.getElementById('staff-chat-log');
-            const color = type === 'SUCCESS' ? 'text-emerald-400' : 'text-blue-400';
-            const div = document.createElement('div');
-            div.className = "text-[10px] font-mono uppercase tracking-widest p-2 border-b border-white/5 animate-pulse";
-            div.innerHTML = `<span class="${color}">[${type}]</span> ${msg}`;
-            log.prepend(div);
+        function staffSpeak(staffKey, text) {
+            if (!window.speechSynthesis) return;
+            window.speechSynthesis.cancel();
+            playRadioClick();
+            setTimeout(() => {
+                const msg = new SpeechSynthesisUtterance(text);
+                if (staffKey === 'sgm') { msg.pitch = 0.5; msg.rate = 0.8; }
+                if (staffKey === 'maj') { msg.pitch = 0.9; msg.rate = 1.2; }
+                if (staffKey === 'ltc') { msg.pitch = 1.1; msg.rate = 1.0; }
+                if (typeof addStaffMessage === 'function') addStaffMessage(staffKey, text);
+                window.speechSynthesis.speak(msg);
+            }, 150);
         }
 
-        // Signaleer / S6 Tab (Tab 17) – Professional Mesh Protocol
+        function drawFrame(frameIdx) {
+            const canvas = document.getElementById('drill-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const drillId = document.getElementById('drill-selector').value;
+            const drill = drills[drillId];
+            const state = drill[frameIdx];
+            if (!state) return;
+            ctx.fillStyle = "#2a362a"; 
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = "rgba(74, 222, 128, 0.1)";
+            for(let i=0; i<canvas.width; i+=50) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,canvas.height); ctx.stroke(); }
+            for(let j=0; j<canvas.height; j+=50) { ctx.beginPath(); ctx.moveTo(0,j); ctx.lineTo(canvas.width,j); ctx.stroke(); }
+            if (state.eny) {
+                state.eny.forEach(e => {
+                    ctx.fillStyle = e.dead ? "#4b5563" : "#ef4444";
+                    ctx.beginPath();
+                    ctx.moveTo(e.x, e.y - 15); ctx.lineTo(e.x + 15, e.y); ctx.lineTo(e.x, e.y + 15); ctx.lineTo(e.x - 15, e.y);
+                    ctx.closePath(); ctx.fill();
+                    ctx.fillStyle = "white"; ctx.fillText(e.id, e.x - 10, e.y + 25);
+                });
+            }
+            state.units.forEach(u => {
+                if (u.smoke) {
+                    ctx.fillStyle = "rgba(200, 200, 200, 0.4)";
+                    for(let i=0; i<3; i++) {
+                        ctx.beginPath(); ctx.arc(u.x + (Math.random()*30-15), u.y, 20, 0, Math.PI*2); ctx.fill();
+                    }
+                }
+                ctx.fillStyle = "#3b82f6"; ctx.beginPath(); ctx.arc(u.x, u.y, 12, 0, Math.PI*2); ctx.fill();
+                ctx.strokeStyle = "white"; ctx.lineWidth = 2; ctx.stroke();
+                if (u.fire && state.eny && !state.eny[0].dead) {
+                    ctx.setLineDash([5, 10]); ctx.strokeStyle = "#fbbf24";
+                    ctx.beginPath(); ctx.moveTo(u.x, u.y); ctx.lineTo(state.eny[0].x, state.eny[0].y); ctx.stroke();
+                    ctx.setLineDash([]);
+                }
+                ctx.fillStyle = "white"; ctx.fillText(u.id, u.x - 6, u.y + 4);
+            });
+        }
+
+        function playDrill() {
+            let frame = 0;
+            const drillId = document.getElementById('drill-selector').value;
+            const drill = drills[drillId];
+            if (window.drillInterval) clearInterval(window.drillInterval);
+            window.drillInterval = setInterval(() => {
+                const state = drill[frame];
+                drawFrame(frame);
+                staffSpeak(state.staff, state.text);
+                frame++;
+                if (frame >= drill.length) {
+                    clearInterval(window.drillInterval);
+                    setTimeout(() => staffSpeak('ltc', "OBJECTIVE SECURE. CONSOLIDATE AND REORGANIZE."), 5000);
+                }
+            }, 5500);
+        }
+
+        function resetDrill() {
+            if (window.drillInterval) clearInterval(window.drillInterval);
+            drawFrame(0);
+        }
+
+        function renderBattleDrills() {
+            const area = document.getElementById('content-area');
+            area.innerHTML = `
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-emerald-300 mb-6">🎬 Animated Battle Drills (TC 3-21.76)</h2>
+                    <div class="flex gap-4 mb-4">
+                        <select id="drill-selector" onchange="resetDrill()" class="bg-gray-800 rounded-xl px-4 py-3 text-sm">
+                            <option value="react_contact">BD 1: React to Contact</option>
+                            <option value="squad_attack">BD 2: Squad Attack</option>
+                            <option value="break_contact">BD 3: Break Contact</option>
+                            <option value="react_ambush">BD 4: React to Ambush (Near)</option>
+                            <option value="raid">BD 6: Raid Operations</option>
+                        </select>
+                        <button onclick="playDrill()" class="bg-emerald-600 hover:bg-emerald-500 px-8 py-3 rounded-2xl font-semibold">▶ PLAY DRILL</button>
+                        <button onclick="resetDrill()" class="bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-2xl text-sm">RESET</button>
+                    </div>
+                    <canvas id="drill-canvas" width="800" height="500" class="w-full rounded-3xl"></canvas>
+                    <div class="text-xs text-emerald-400 mt-4 text-center">SGM & MAJ narrate each phase • LTC oversees withdrawal</div>
+                </div>`;
+            resetDrill();
+        }
+
         function renderSignaleerTab() {
             const area = document.getElementById('content-area');
             const assets = JSON.parse(localStorage.getItem('nexus_signal_assets')) || [];
             const paceLevels = ['Primary', 'Alternate', 'Contingent', 'Emergency'];
-
             area.innerHTML = `
                 <div class="max-w-6xl mx-auto animate-in fade-in zoom-in-95 duration-300">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
@@ -220,31 +356,21 @@
                             <button onclick="startQRScanner()" class="flex-1 bg-zinc-800 text-white px-6 py-4 rounded-2xl text-xs font-black uppercase hover:bg-zinc-700 transition-all active:scale-95 border border-zinc-700 shadow-xl">📥 Scan Sync</button>
                         </div>
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
                         ${paceLevels.map(lvl => `
                             <div class="group bg-zinc-900/50 border border-zinc-800 p-6 rounded-[2rem] hover:border-emerald-500/50 transition-all">
                                 <p class="text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] mb-2">${lvl}</p>
-                                <div class="text-xl font-bold text-white focus:outline-none focus:text-emerald-400" 
-                                     id="pace-${lvl.toLowerCase()}-val" 
-                                     contenteditable="true" 
-                                     onblur="saveSignalData()">
-                                     ${localStorage.getItem('pace_'+lvl.toLowerCase()) || '---'}
-                                </div>
+                                <div class="text-xl font-bold text-white focus:outline-none focus:text-emerald-400" id="pace-${lvl.toLowerCase()}-val" contenteditable="true" onblur="saveSignalData()">${localStorage.getItem('pace_'+lvl.toLowerCase()) || '---'}</div>
                             </div>
                         `).join('')}
                     </div>
-
                     <div class="bg-zinc-900/80 rounded-[2.5rem] border border-zinc-800 p-2 md:p-8 overflow-hidden">
                         <div class="flex items-center justify-between px-4 py-6">
                             <h3 class="text-lg font-black text-white uppercase italic">Signal Asset Estimate</h3>
                             <button onclick="addSignalAsset()" class="bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 px-5 py-2 rounded-xl text-[10px] font-black uppercase hover:bg-emerald-500 hover:text-white transition-all">+ Add System</button>
                         </div>
-
                         <div class="space-y-2" id="signal-asset-list">
-                            ${assets.length ? assets.map((a, i) => renderAssetRow(a, i)).join('') : `
-                                <div class="text-center py-12 text-zinc-600 font-mono text-xs italic uppercase">No systems currently in estimate</div>
-                            `}
+                            ${assets.length ? assets.map((a, i) => renderAssetRow(a, i)).join('') : `<div class="text-center py-12 text-zinc-600 font-mono text-xs italic uppercase">No systems currently in estimate</div>`}
                         </div>
                     </div>
                 </div>
@@ -289,7 +415,6 @@
                 });
             });
             localStorage.setItem('nexus_signal_assets', JSON.stringify(assets));
-
             ['primary','alternate','contingent','emergency'].forEach(l => {
                 const val = document.getElementById(`pace-${l}-val`).innerText;
                 localStorage.setItem(`pace_${l}`, val);
@@ -305,7 +430,9 @@
                 c: localStorage.getItem('pace_contingent'),
                 e: localStorage.getItem('pace_emergency')
             };
-            const payload = JSON.stringify({ a: JSON.parse(assets), p: pace });
+            const payloadObj = { a: JSON.parse(assets), p: pace };
+            const compressed = pako.deflate(JSON.stringify(payloadObj), { level: 9 });
+            const payload = btoa(String.fromCharCode.apply(null, compressed));
             document.getElementById('qr-modal').classList.remove('hidden');
             const container = document.getElementById('qrcode-container');
             container.innerHTML = "";
@@ -336,7 +463,240 @@
             tacNotify("Optical Mesh Listener Active... (Camera Sync)", "INFO");
         }
 
-        // SwitchTab (includes Tab 17)
+        function renderNotebook() {
+            const area = document.getElementById('content-area');
+            area.innerHTML = `
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-2xl font-bold text-emerald-300">📔 Digital Green Notebook</h2>
+                        <div class="flex gap-3">
+                            <button onclick="generateFRAGO()" class="bg-amber-600 hover:bg-amber-500 px-5 py-2 rounded-xl text-sm font-semibold flex items-center gap-2"><span>📋</span> Generate FRAGO from Notes</button>
+                            <button onclick="exportNotes()" class="bg-emerald-700 hover:bg-emerald-600 px-5 py-2 rounded-xl text-sm font-semibold">Export .TXT</button>
+                        </div>
+                    </div>
+                    <textarea id="note-input" class="w-full h-32 bg-gray-900/50 border border-emerald-900/50 rounded-xl p-4 focus:ring-2 focus:ring-emerald-500" placeholder="Enter notes, CCIR, taskings..."></textarea>
+                    <button onclick="saveNote()" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 rounded-xl font-bold">POST TO JOURNAL</button>
+                    <div id="notes-log" class="space-y-4"></div>
+                </div>
+            `;
+            updateNotesLog();
+        }
+
+        function saveNote() {
+            const input = document.getElementById('note-input');
+            if (!input.value) return;
+            const newNote = { id: Date.now(), time: new Date().toLocaleString(), text: input.value };
+            notes.unshift(newNote);
+            localStorage.setItem('nexus_notes', JSON.stringify(notes));
+            input.value = '';
+            updateNotesLog();
+        }
+
+        function updateNotesLog() {
+            const log = document.getElementById('notes-log');
+            log.innerHTML = notes.map(n => `
+                <div class="bg-gray-900/80 border-l-4 border-emerald-500 p-4 rounded-r-xl">
+                    <div class="flex justify-between text-xs mb-2"><span>${n.time}</span><span onclick="deleteNote(${n.id})" class="text-red-400 cursor-pointer">DELETE</span></div>
+                    <div>${n.text}</div>
+                </div>
+            `).join('');
+        }
+
+        function deleteNote(id) {
+            notes = notes.filter(n => n.id !== id);
+            localStorage.setItem('nexus_notes', JSON.stringify(notes));
+            updateNotesLog();
+        }
+
+        function exportNotes() {
+            const text = notes.map(n => `${n.time}\n${n.text}\n\n`).join('');
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Green-Notebook.txt';
+            a.click();
+            tacNotify("Notebook exported", "INFO");
+        }
+
+        function generateFRAGO() {
+            if (notes.length === 0) {
+                tacNotify("No notes found for parsing", "WARN");
+                return;
+            }
+            const combinedText = notes.map(n => n.text).join("\n");
+            const situation = combinedText.match(/SIT:(.*?)($|MSN:|EXEC:)/s)?.[1] || "No change from OPORD.";
+            const mission = combinedText.match(/MSN:(.*?)($|EXEC:|SUS:)/s)?.[1] || "Continue current operations.";
+            const execution = combinedText.match(/EXEC:(.*?)($|SUS:|SIG:)/s)?.[1] || combinedText.substring(0, 500);
+
+            const area = document.getElementById('content-area');
+            area.innerHTML = `
+                <div class="max-w-4xl mx-auto p-8 bg-white text-black font-serif shadow-2xl border-t-8 border-emerald-900 rounded-b-xl">
+                    <div class="text-center border-b-2 border-black pb-4 mb-6">
+                        <h2 class="text-xl font-bold uppercase underline">FRAGMENTARY ORDER 001</h2>
+                        <p class="text-xs">Reference: OPORD 24-01 (OPERATION NEXUS)</p>
+                        <p class="text-xs uppercase font-bold mt-2">UNCLASSIFIED // FOR TRAINING ONLY</p>
+                    </div>
+                    <div class="space-y-4 text-sm leading-relaxed">
+                        <p><strong>1. SITUATION:</strong> ${situation}</p>
+                        <p><strong>2. MISSION:</strong> ${mission}</p>
+                        <p><strong>3. EXECUTION:</strong><br>${execution}</p>
+                        <p><strong>4. SUSTAINMENT:</strong> Per SOP.</p>
+                        <p><strong>5. COMMAND & SIGNAL:</strong> No change.</p>
+                    </div>
+                    <div class="mt-12 pt-4 border-t border-gray-300 text-right">
+                        <p class="font-bold">OFFICIAL:</p>
+                        <p class="text-xs uppercase italic">Parsed by Command Nexus AI</p>
+                    </div>
+                    <button onclick="window.print()" class="mt-8 w-full py-3 bg-gray-200 hover:bg-gray-300 text-black rounded-lg font-bold">🖨️ PRINT TO PDF / HARD COPY</button>
+                </div>
+            `;
+            tacNotify("FRAGO Parsed & Formatted", "INFO");
+        }
+
+        function renderSyncMatrix() {
+            const savedData = JSON.parse(localStorage.getItem('nexus_sync_matrix')) || [
+                { unit: "1st Platoon", h6: "PCCs", h3: "Movement", h0: "Assault", hp3: "Consolidate", hp6: "Logpac" },
+                { unit: "Fires Cell", h6: "-", h3: "Prep Fires", h0: "Shift Fire", hp3: "-", hp6: "-" }
+            ];
+            const area = document.getElementById('content-area');
+            area.innerHTML = `
+                <div class="max-w-6xl mx-auto animate-in fade-in">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-emerald-300 italic uppercase tracking-wider">Synchronization Matrix</h2>
+                        <div class="flex gap-2">
+                            <button onclick="addRow()" class="bg-emerald-800 hover:bg-emerald-700 px-4 py-2 rounded-lg text-xs">+ ADD UNIT</button>
+                            <button onclick="window.print()" class="bg-blue-800 hover:bg-blue-700 px-4 py-2 rounded-lg text-xs">🖨️ PRINT MATRIX</button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto rounded-2xl border border-emerald-900/50 shadow-2xl">
+                        <table class="w-full text-sm text-left">
+                            <thead class="bg-emerald-950 text-emerald-400 uppercase text-[10px] tracking-widest">
+                                <tr>
+                                    <th class="p-4 border-r border-emerald-900/30">Unit / Element</th>
+                                    <th class="p-4 border-r border-emerald-900/30">H-6 (Prep)</th>
+                                    <th class="p-4 border-r border-emerald-900/30">H-3 (Move)</th>
+                                    <th class="p-4 border-r border-emerald-900/30">H-Hour (Exec)</th>
+                                    <th class="p-4 border-r border-emerald-900/30">H+3 (Reorg)</th>
+                                    <th class="p-4">H+6 (Sustain)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sync-body-rows" class="bg-gray-900/50 divide-y divide-emerald-900/20"></tbody>
+                        </table>
+                    </div>
+                </div>`;
+            renderSyncRows(savedData);
+        }
+
+        function renderSyncRows(data) {
+            const tbody = document.getElementById('sync-body-rows');
+            tbody.innerHTML = data.map((row) => `
+                <tr class="hover:bg-emerald-900/10 transition-colors">
+                    <td contenteditable="true" onblur="saveMatrix()" class="p-4 font-bold text-emerald-200 border-r border-emerald-900/30">${row.unit}</td>
+                    <td contenteditable="true" onblur="saveMatrix()" class="p-4 border-r border-emerald-900/30">${row.h6}</td>
+                    <td contenteditable="true" onblur="saveMatrix()" class="p-4 border-r border-emerald-900/30">${row.h3}</td>
+                    <td contenteditable="true" onblur="saveMatrix()" class="p-4 border-r border-emerald-900/30">${row.h0}</td>
+                    <td contenteditable="true" onblur="saveMatrix()" class="p-4 border-r border-emerald-900/30">${row.hp3}</td>
+                    <td contenteditable="true" onblur="saveMatrix()" class="p-4">${row.hp6}</td>
+                </tr>
+            `).join('');
+        }
+
+        function saveMatrix() {
+            const rows = Array.from(document.querySelectorAll('#sync-body-rows tr')).map(tr => {
+                const tds = tr.querySelectorAll('td');
+                return { unit: tds[0].innerText, h6: tds[1].innerText, h3: tds[2].innerText, h0: tds[3].innerText, hp3: tds[4].innerText, hp6: tds[5].innerText };
+            });
+            localStorage.setItem('nexus_sync_matrix', JSON.stringify(rows));
+            tacNotify("Matrix Auto-Saved", "INFO");
+        }
+
+        function addRow() {
+            let data = JSON.parse(localStorage.getItem('nexus_sync_matrix')) || [];
+            data.push({ unit: "New Unit", h6: "-", h3: "-", h0: "-", hp3: "-", hp6: "-" });
+            localStorage.setItem('nexus_sync_matrix', JSON.stringify(data));
+            renderSyncRows(data);
+        }
+
+        function toggleBlackoutMode() {
+            document.body.classList.toggle('tactical-dark');
+            const mapEl = document.getElementById('map-container');
+            if (mapEl) {
+                mapEl.style.filter = document.body.classList.contains('tactical-dark') 
+                    ? 'invert(100%) hue-rotate(180deg) brightness(50%) contrast(150%)' 
+                    : 'none';
+            }
+            tacNotify("Blackout Mode " + (document.body.classList.contains('tactical-dark') ? "ENABLED" : "DISABLED"), "INFO");
+        }
+
+        function initMapTab() {
+            const area = document.getElementById('content-area');
+            area.innerHTML = `<div id="map-container" class="w-full h-full min-h-[500px] rounded-3xl overflow-hidden"></div>
+                              <div class="absolute bottom-6 left-6 bg-black/80 text-xs px-4 py-2 rounded-2xl flex gap-4">
+                                <button onclick="addUnitMarkerPrompt('F')" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-xl">➕ Friendly Marker</button>
+                                <button onclick="addUnitMarkerPrompt('H')" class="flex items-center gap-2 bg-red-600 hover:bg-red-500 px-5 py-2 rounded-xl">➕ Hostile Marker</button>
+                              </div>`;
+            map = L.map('map-container').setView([39.8283, -98.5795], 5);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        }
+
+        function addUnitMarkerPrompt(identity) {
+            if (!map) return;
+            const lat = 39.8283 + (Math.random() * 0.5 - 0.25);
+            const lng = -98.5795 + (Math.random() * 0.5 - 0.25);
+            addUnitMarker(lat, lng, identity);
+        }
+
+        function addUnitMarker(lat, lng, identity = 'F') {
+            const sidc = identity === 'F' ? 'SFGPU-------' : 'SHGPU-------';
+            const sym = new ms.Symbol(sidc, { size: 35 });
+            L.marker([lat, lng], {
+                icon: L.divIcon({ className: '', html: sym.asSVG(), iconSize: [35, 35], iconAnchor: [17, 17] }),
+                draggable: true
+            }).addTo(map).bindPopup(`<b>Unit Position</b><br>Grid: ${lat.toFixed(4)}, ${lng.toFixed(4)}`);
+        }
+
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+        function toggleSidebarIfMobile() { if (window.innerWidth < 768) toggleSidebar(); }
+        function toggleChat() { document.getElementById('chat-panel').classList.toggle('hidden'); }
+        function emergencyWipe() {
+            if (confirm("PROTOCOL WARNING: This will permanently purge all local notes, cached doctrine, and API tokens. Confirm Destruct?")) {
+                localStorage.clear();
+                sessionStorage.clear();
+                addStaffMessage("bot", "MAJ ANGER: Sanitizing local storage... Burn complete.");
+                setTimeout(() => location.reload(), 1500);
+            }
+        }
+
+        function addStaffMessage(sender, text) {
+            const log = document.getElementById('staff-chat-log');
+            const div = document.createElement('div');
+            div.className = sender === "bot" ? "staff-msg" : "user-msg staff-msg";
+            if (text.includes("MAJ ANGER")) div.classList.add("maj");
+            if (text.includes("SGM STUBBORN")) div.classList.add("sgm");
+            div.innerHTML = text;
+            log.appendChild(div);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function sendStaffQuery() {
+            const input = document.getElementById('staff-input');
+            if (!input.value.trim()) return;
+            addStaffMessage('user', input.value);
+            const bot = document.getElementById('staff-select').value;
+            const response = generateStaffResponse(bot, input.value);
+            setTimeout(() => addStaffMessage('bot', response), 450);
+            input.value = '';
+        }
+
+        function generateStaffResponse(bot, query) {
+            return "SGM STUBBORN: Roger that, sir. Noted in the journal.";
+        }
+
+        function initFuzzySearch() {
+            fuse = new Fuse([], { keys: ['number', 'title'], threshold: 0.35 });
+        }
+
         function switchTab(tabId) {
             document.querySelectorAll('.tab-link').forEach(el => el.classList.remove('tab-active'));
             const active = document.querySelector(`[data-tab="${tabId}"]`);
@@ -354,13 +714,11 @@
             }
         }
 
-        // All other functions (FRAGO parser, Sync Matrix, Raid animation, blackout mode, staff chat, etc.) are preserved from previous versions
-
         window.onload = () => {
             if (!localStorage.getItem('disclaimerAcknowledged')) document.getElementById('disclaimer-popup').classList.remove('hidden');
-            switchTab(17); // start on Signaleer tab
+            switchTab(17);
             initFuzzySearch();
-            addStaffMessage("bot", "MAJ ANGER: Command Nexus is fully deployed – zero-trace disclaimer active, Signaleer mesh protocol ready.");
+            addStaffMessage("bot", "MAJ ANGER: Full application loaded with complete Department of War disclaimer.");
             tacNotify("Application Initialized – All Systems Go", "SUCCESS");
         };
     </script>
