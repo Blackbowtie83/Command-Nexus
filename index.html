@@ -28,7 +28,7 @@
         .sidebar-bg { background-color: #2a362a; height: 100dvh; }
         .chat-bg { background-color: #1f2a1f; }
         .content-bg { background-color: #344c34; }
-        .staff-msg { background: #1f2a1f; border-left: 5px solid #4ade80; padding: 14px; border-radius: 12px; margin-bottom: 12px; }
+        .staff-msg { background: #1f2a1f; border-left: 5px solid #4ade80; padding: 14px; border-radius: 12px; margin-bottom: 12px; word-break: break-word; white-space: pre-wrap; overflow-wrap: break-word; }
         .maj { border-left-color: #f87171; font-weight: 600; }
         .sgm { border-left-color: #fbbf24; }
         .cpt { border-left-color: #60a5fa; }
@@ -47,6 +47,7 @@
             .sidebar { position: fixed; left: -288px; transition: left 0.3s; z-index: 50; height: 100dvh; }
             .sidebar.open { left: 0; }
             .chat-panel { position: fixed; bottom: 0; left: 0; right: 0; height: 55vh; z-index: 40; }
+            #content-area { overflow-y: auto !important; -webkit-overflow-scrolling: touch; height: calc(100vh - 3.5rem); }
         }
         @page { size: 5.5in 8.5in; margin: 0.5in; }
         @media print {
@@ -62,6 +63,8 @@
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #4ade80; border-radius: 9999px; }
         .app-footer { font-size: 10px; font-weight: 300; letter-spacing: 0.5px; color: #ffffff; opacity: 0.75; }
         .action-box { background-color: #1f2a1f; border-left: 4px solid #60a5fa; }
+        .modal { animation: modalPop 0.3s ease; }
+        @keyframes modalPop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body class="flex h-screen overflow-hidden flex-col md:flex-row">
@@ -139,6 +142,14 @@
                 <option value="ltc">LTC SHORTTIME</option>
             </select>
             <input id="staff-input" type="text" placeholder="Type message and press Enter..." class="flex-1 bg-gray-800 rounded-xl px-4 py-3 text-sm" onkeypress="if(event.key==='Enter') sendStaffQuery()">
+        </div>
+    </div>
+
+    <!-- Doctrine Report Modal -->
+    <div id="report-modal" onclick="if(event.target.id==='report-modal')closeReportModal()" class="fixed inset-0 bg-black/90 hidden flex items-center justify-center z-[30000]">
+        <div onclick="event.stopImmediatePropagation()" class="bg-zinc-900 max-w-2xl w-full mx-4 rounded-3xl p-8 max-h-[85vh] overflow-auto modal">
+            <div id="modal-content" class="text-zinc-300 text-sm leading-relaxed"></div>
+            <button onclick="closeReportModal()" class="mt-8 w-full py-4 bg-red-700 hover:bg-red-600 text-white rounded-2xl font-bold">CLOSE REPORT</button>
         </div>
     </div>
 
@@ -717,7 +728,15 @@
         }
 
         function generateStaffResponse(bot, query) {
-            return "SGM STUBBORN: Roger that, sir. Noted in the journal.";
+            const replies = [
+                "SGM STUBBORN: Roger that. I'll make a note of it in the log.",
+                "MAJ ANGER: Copy. Good call on that one.",
+                "CPT SNUFFY: Got it, sir. Passing that up the chain.",
+                "LTC SHORTTIME: Solid info. We'll track it.",
+                "SFC BURNOUT: Yeah, I see what you mean. Logged.",
+                "SGM STUBBORN: Understood. Anything else on that?"
+            ];
+            return replies[Math.floor(Math.random() * replies.length)];
         }
 
         function acknowledgeDisclaimer() {
@@ -815,8 +834,8 @@
                 {id: 3, title: "Infantry Rifle Company", pub: "ATP 3-21.10", date: "2021", focus: "Company-Level Tactics"},
                 {id: 4, title: "The Operations Process", pub: "ADP 5-0", date: "31 July 2019", focus: "MDMP, Troop Leading Procedures, Planning"},
                 {id: 5, title: "Commander and Staff Organization and Operations", pub: "FM 6-0", date: "16 May 2022", focus: "Staff Processes, Running Estimates"},
-                {id: 6, title: "U.S. Army Report and Message Formats", pub: "FM 6-99", date: "May 2022", focus: "SALUTE, SPOT, LACE, 9-Line MEDEVAC, UXO, UAV Reports"},
-                {id: 7, title: "SALUTE Report Format", pub: "FM 6-99", date: "May 2022", focus: "Size, Activity, Location, Unit, Time, Equipment"},
+                {id: 6, title: "U.S. Army Report and Message Formats", pub: "FM 6-99", date: "May 2022", focus: "SALUTE • SPOT • LACE • 9-Line • UXO • UAV"},
+                {id: 7, title: "SALUTE Report", pub: "FM 6-99", date: "May 2022", focus: "Size, Activity, Location, Unit, Time, Equipment"},
                 {id: 8, title: "SPOT Report", pub: "FM 6-99", date: "May 2022", focus: "Spot Report for enemy activity"},
                 {id: 9, title: "LACE Report", pub: "FM 6-99", date: "May 2022", focus: "Liquid, Ammunition, Casualties, Equipment"},
                 {id: 10, title: "9-Line MEDEVAC Request", pub: "FM 6-99", date: "May 2022", focus: "Medical Evacuation Request Format"},
@@ -848,7 +867,7 @@
                             </thead>
                             <tbody id="doctrine-tbody" class="divide-y divide-emerald-900/30 text-sm">
                                 ${doctrineDocs.map(doc => `
-                                    <tr class="hover:bg-emerald-900/30 transition-colors">
+                                    <tr onclick="showReport(${doc.id})" class="hover:bg-emerald-900/30 transition-colors cursor-pointer">
                                         <td class="p-6 font-medium">${doc.title}</td>
                                         <td class="p-6 text-emerald-400 font-mono">${doc.pub}</td>
                                         <td class="p-6 text-zinc-400">${doc.date}</td>
@@ -888,7 +907,7 @@
             tbody.innerHTML = results.map(result => {
                 const doc = result.item;
                 return `
-                    <tr class="hover:bg-emerald-900/30 transition-colors">
+                    <tr onclick="showReport(${doc.id})" class="hover:bg-emerald-900/30 transition-colors cursor-pointer">
                         <td class="p-6 font-medium">${doc.title}</td>
                         <td class="p-6 text-emerald-400 font-mono">${doc.pub}</td>
                         <td class="p-6 text-zinc-400">${doc.date}</td>
@@ -896,6 +915,53 @@
                     </tr>
                 `;
             }).join('');
+        }
+
+        const reportTemplates = {
+            6: `<h3 class="text-xl font-bold mb-4">SALUTE Report (FM 6-99)</h3>
+                <p><strong>S</strong>ize: ________<br>
+                <strong>A</strong>ctivity: ________<br>
+                <strong>L</strong>ocation: ________<br>
+                <strong>U</strong>nit/Uniform: ________<br>
+                <strong>T</strong>ime: ________<br>
+                <strong>E</strong>quipment: ________</p>`,
+            7: `<h3 class="text-xl font-bold mb-4">SPOT Report (FM 6-99)</h3>
+                <p>SPOT Report is used to report enemy activity.</p>`,
+            8: `<h3 class="text-xl font-bold mb-4">LACE Report (FM 6-99)</h3>
+                <p><strong>L</strong>iquid (fuel/water): ________<br>
+                <strong>A</strong>mmunition: ________<br>
+                <strong>C</strong>asualties: ________<br>
+                <strong>E</strong>quipment: ________</p>`,
+            9: `<h3 class="text-xl font-bold mb-4">9-Line MEDEVAC Request (FM 6-99)</h3>
+                <ol class="list-decimal pl-5 space-y-1">
+                    <li>Location of pickup site</li>
+                    <li>Radio frequency / call sign</li>
+                    <li>Number of patients by precedence</li>
+                    <li>Special equipment required</li>
+                    <li>Number of patients by type</li>
+                    <li>Security of pickup site</li>
+                    <li>Method of marking pickup site</li>
+                    <li>Patient nationality and status</li>
+                    <li>NBC contamination</li>
+                </ol>`,
+            10: `<h3 class="text-xl font-bold mb-4">UXO Report (FM 6-99)</h3>
+                <p>UXO Report format for reporting unexploded ordnance.</p>`,
+            11: `<h3 class="text-xl font-bold mb-4">UAV Report (FM 6-99)</h3>
+                <p>Unmanned Aerial Vehicle spotting report format.</p>`
+        };
+
+        function showReport(id) {
+            const modal = document.getElementById('report-modal');
+            const content = document.getElementById('modal-content');
+            content.innerHTML = reportTemplates[id] || "<p class='text-red-400'>Report template not found.</p>";
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeReportModal() {
+            const modal = document.getElementById('report-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
 
         function renderMDMPTab() {
