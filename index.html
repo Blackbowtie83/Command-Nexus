@@ -918,21 +918,43 @@
         }
 
         const reportTemplates = {
-            6: `<h3 class="text-xl font-bold mb-4">SALUTE Report (FM 6-99)</h3>
+            1: `<h3 class="text-xl font-bold mb-4">Ranger Handbook (TC 3-21.76 September 2025)</h3>
+                <p class="text-emerald-400">Key chapters: Leadership, Operations, Fire Support, Communications, Demolitions, Movement, Patrols, Battle Drills (Chapter 8), Mountaineering, Machine Gun Employment, Urban Operations, Waterborne Operations, Mounted Patrol Operations, Aviation, Tactical Combat Casualty Care.</p>
+                <p class="mt-4">Primary focus for small-unit tactics, patrolling, and battle drills.</p>`,
+
+            2: `<h3 class="text-xl font-bold mb-4">Infantry Platoon and Squad (ATP 3-21.8)</h3>
+                <p class="text-emerald-400">Covers offense, defense, stability operations, and all squad/platoon level tactics, techniques, and procedures.</p>`,
+
+            3: `<h3 class="text-xl font-bold mb-4">Infantry Rifle Company (ATP 3-21.10)</h3>
+                <p class="text-emerald-400">Company-level tactics and operations.</p>`,
+
+            4: `<h3 class="text-xl font-bold mb-4">The Operations Process (ADP 5-0)</h3>
+                <p class="text-emerald-400">Core doctrine for the Military Decision Making Process (MDMP), Troop Leading Procedures (TLP), and planning.</p>`,
+
+            5: `<h3 class="text-xl font-bold mb-4">Commander and Staff Organization and Operations (FM 6-0)</h3>
+                <p class="text-emerald-400">Staff processes, running estimates, and command post operations.</p>`,
+
+            6: `<h3 class="text-xl font-bold mb-4">U.S. Army Report and Message Formats (FM 6-99)</h3>
+                <p class="text-emerald-400">Official reference for all standard Army reports including SALUTE, SPOT, LACE, 9-Line, UXO, and UAV.</p>`,
+
+            7: `<h3 class="text-xl font-bold mb-4">SALUTE Report (FM 6-99)</h3>
                 <p><strong>S</strong>ize: ________<br>
                 <strong>A</strong>ctivity: ________<br>
                 <strong>L</strong>ocation: ________<br>
                 <strong>U</strong>nit/Uniform: ________<br>
                 <strong>T</strong>ime: ________<br>
                 <strong>E</strong>quipment: ________</p>`,
-            7: `<h3 class="text-xl font-bold mb-4">SPOT Report (FM 6-99)</h3>
-                <p>SPOT Report is used to report enemy activity.</p>`,
-            8: `<h3 class="text-xl font-bold mb-4">LACE Report (FM 6-99)</h3>
+
+            8: `<h3 class="text-xl font-bold mb-4">SPOT Report (FM 6-99)</h3>
+                <p>Spot Report used to report enemy activity.</p>`,
+
+            9: `<h3 class="text-xl font-bold mb-4">LACE Report (FM 6-99)</h3>
                 <p><strong>L</strong>iquid (fuel/water): ________<br>
                 <strong>A</strong>mmunition: ________<br>
                 <strong>C</strong>asualties: ________<br>
                 <strong>E</strong>quipment: ________</p>`,
-            9: `<h3 class="text-xl font-bold mb-4">9-Line MEDEVAC Request (FM 6-99)</h3>
+
+            10: `<h3 class="text-xl font-bold mb-4">9-Line MEDEVAC Request (FM 6-99)</h3>
                 <ol class="list-decimal pl-5 space-y-1">
                     <li>Location of pickup site</li>
                     <li>Radio frequency / call sign</li>
@@ -944,9 +966,11 @@
                     <li>Patient nationality and status</li>
                     <li>NBC contamination</li>
                 </ol>`,
-            10: `<h3 class="text-xl font-bold mb-4">UXO Report (FM 6-99)</h3>
+
+            11: `<h3 class="text-xl font-bold mb-4">UXO Report (FM 6-99)</h3>
                 <p>UXO Report format for reporting unexploded ordnance.</p>`,
-            11: `<h3 class="text-xl font-bold mb-4">UAV Report (FM 6-99)</h3>
+
+            12: `<h3 class="text-xl font-bold mb-4">UAV Report Format (FM 6-99)</h3>
                 <p>Unmanned Aerial Vehicle spotting report format.</p>`
         };
 
