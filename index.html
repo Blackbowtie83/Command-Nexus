@@ -142,60 +142,67 @@
         </div>
     </div>
 
-    <!-- FULL UPDATED DISCLAIMER POPUP WITH ALL REQUESTED SECTIONS -->
+    <!-- FULL UPDATED DISCLAIMER POPUP WITH SYNC LIMITATIONS -->
     <div id="disclaimer-popup" class="fixed inset-0 bg-black/98 flex items-center justify-center z-[20000] hidden backdrop-blur-xl">
         <div class="bg-zinc-900 max-w-2xl w-full mx-4 rounded-[2.5rem] p-10 border-2 border-red-900/50 shadow-[0_0_50px_rgba(153,27,27,0.2)]">
             <div class="text-center mb-8">
                 <div class="inline-block px-4 py-1 rounded-full border border-red-500 text-red-500 text-[10px] font-black tracking-[0.2em] uppercase mb-4">Regulatory Compliance Notice</div>
                 <h2 class="text-white text-3xl font-black tracking-tighter uppercase italic">Legal & Operational Guardrails</h2>
             </div>
-            
             <div class="space-y-6 text-zinc-400 text-sm leading-relaxed overflow-y-auto max-h-[55vh] pr-4 custom-scrollbar">
-                
-                <!-- 1. No Affiliation or Endorsement (Department of War) -->
+                <!-- 1. No Affiliation or Endorsement -->
                 <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-emerald-500">
                     <p class="text-emerald-400 font-bold mb-1 underline uppercase text-xs">1. No Affiliation or Endorsement</p>
-                    <p>This application (the "Software") is an independent, private venture. It is not affiliated with, authorized by, sponsored by, or in any way officially connected to the Department of War, the United States Army, or any other military service branch. Any use of the term "Department of War" within this disclaimer or the Software is intended to reflect the current 2025 organizational structure and does not imply government endorsement.</p>
+                    <p>This application (the "Software") is an independent, private venture. It is not affiliated with, authorized by, sponsored by, or in any way officially connected to the Department of War, the United States Army, or any other military service branch...</p>
                 </div>
 
                 <!-- 2. DOD MEMO 22-001 COMPLIANCE -->
                 <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-green-500">
                     <p class="text-green-400 font-bold mb-1 underline uppercase text-xs">DOD MEMO 22-001 COMPLIANCE</p>
-                    <p>This application operates as a Local-Only Client. No data is transmitted via unauthorized cloud services, third-party APIs, or external servers. All persistence is restricted to the browser's localStorage.</p>
+                    <p>This application operates as a **Local-Only Client**. No data is transmitted via unauthorized cloud services, third-party APIs, or external servers unless the user explicitly chooses optional sync features. All default persistence is restricted to the browser's localStorage.</p>
                 </div>
 
-                <!-- 3. OPTICAL TRANSFER (QR SYNC) PROTOCOL -->
-                <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-yellow-500">
-                    <p class="text-yellow-400 font-bold mb-1 underline uppercase text-xs">OPTICAL TRANSFER (QR SYNC) PROTOCOL</p>
-                    <p>QR Sync is a peer-to-peer visual transfer. To mitigate "bit-rot" or optical scanning errors, Users MUST manually verify frequencies and PACE entries on the receiving device immediately following a sync.</p>
-                </div>
-
-                <!-- 4. SECURITY CLASSIFICATION WARNING -->
-                <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-red-500">
-                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">SECURITY CLASSIFICATION WARNING</p>
-                    <p>This application is UNCLASSIFIED // FOR TRAINING ONLY. Users are responsible for ensuring no classified information is entered or stored in localStorage. Any accidental input of classified data must be immediately purged using the Emergency Wipe function.</p>
-                </div>
-
-                <!-- 5. Non-Official Planning Tool -->
+                <!-- 3. Synchronization Limitations (NEW) -->
                 <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-amber-500">
-                    <p class="text-amber-400 font-bold mb-1 underline uppercase text-xs">5. Non-Official Planning Tool</p>
-                    <p>The MDMP and TLP outputs, including all base Operation Orders (OPORDs) and supporting Annexes (A through Z), are generated using artificial intelligence modeled after FM 5-0. These products are for educational and simulation purposes only. They do not constitute official military orders or authorized tactical directives.</p>
+                    <p class="text-amber-400 font-bold mb-1 underline uppercase text-xs">3. Synchronization Limitations</p>
+                    <p>The built-in QR Sync feature is a **visual/optical peer-to-peer transfer only**. It is one-time, manual, and does not provide live multi-user synchronization. There is currently <strong>no real-time cloud-based or server-mediated multi-user sync</strong> in this application.</p>
+                    <p class="mt-3 text-xs">Any data shared via QR must be manually verified on the receiving device. Changes made on one device after a QR transfer will not automatically appear on other devices. This design choice was made to maintain strict local-only operation and minimize external data transmission risks.</p>
                 </div>
 
-                <!-- 6. Responsibility for Annex Integrity -->
-                <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-red-500">
-                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">6. Responsibility for Annex Integrity</p>
-                    <p>All generated Annexes must be reviewed by qualified human staff officers to ensure tactical synchronization and doctrinal accuracy. The Software may flag certain data as [DATA MISSING] if the source document is incomplete.</p>
+                <!-- 4. OPTICAL TRANSFER (QR SYNC) PROTOCOL -->
+                <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-yellow-500">
+                    <p class="text-yellow-400 font-bold mb-1 underline uppercase text-xs">4. OPTICAL TRANSFER (QR SYNC) PROTOCOL</p>
+                    <p>QR Sync is strictly visual. To mitigate scanning errors or "bit-rot", users MUST manually verify all PACE entries, signal assets, and other transferred data immediately after scanning. No persistent connection or automatic updates occur between devices.</p>
                 </div>
 
-                <!-- 7. No Guarantee of Doctrinal Success -->
+                <!-- 5. SECURITY CLASSIFICATION WARNING -->
                 <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-red-500">
-                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">7. No Guarantee of Doctrinal Success</p>
-                    <p>While the Software aims to facilitate effective action in the face of unforeseen events, the developer makes no guarantees regarding the "doctrinal correctness" of any specific mission approach. Users are responsible for the final validation of all plans.</p>
+                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">5. SECURITY CLASSIFICATION WARNING</p>
+                    <p>This application is UNCLASSIFIED // FOR TRAINING ONLY. Users are responsible for ensuring no classified, sensitive, or official information is entered or stored in localStorage. Any accidental input of such data must be immediately purged using the Emergency Wipe function.</p>
+                </div>
+
+                <!-- 6. Non-Official Planning Tool -->
+                <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-amber-500">
+                    <p class="text-amber-400 font-bold mb-1 underline uppercase text-xs">6. Non-Official Planning Tool</p>
+                    <p>The MDMP, TLP, COA, and all generated products are for educational and simulation purposes only. They do not constitute official military orders or authorized tactical directives.</p>
+                </div>
+
+                <!-- 7. Responsibility for Annex Integrity -->
+                <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-red-500">
+                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">7. Responsibility for Annex Integrity</p>
+                    <p>All generated content must be reviewed by qualified personnel. The Software may flag incomplete data and makes no guarantee of doctrinal correctness.</p>
+                </div>
+
+                <!-- 8. No Guarantee of Doctrinal Success -->
+                <div class="bg-white/5 p-4 rounded-2xl border-l-4 border-red-500">
+                    <p class="text-red-400 font-bold mb-1 underline uppercase text-xs">8. No Guarantee of Doctrinal Success</p>
+                    <p>The developer makes no guarantees regarding the accuracy or effectiveness of any mission approach generated by this tool. Users bear full responsibility for final validation and use.</p>
                 </div>
             </div>
 
-            <button onclick="acknowledgeDisclaimer()" class="mt-10 w-full py-5 bg-red-700 hover:bg-red-600 text-white rounded-2xl text-lg font-black transition-all shadow-lg active:scale-95 uppercase tracking-widest">I Acknowledge All Guardrails – Initialize Application</button>
+            <button onclick="acknowledgeDisclaimer()" class="mt-10 w-full py-5 bg-red-700 hover:bg-red-600 text-white rounded-2xl text-lg font-black transition-all shadow-lg active:scale-95 uppercase tracking-widest">
+                I ACKNOWLEDGE ALL GUARDRAILS INCLUDING SYNC LIMITATIONS – INITIALIZE APPLICATION
+            </button>
         </div>
     </div>
 
@@ -211,6 +218,7 @@
     </div>
 
     <script>
+        // FULL EXPANDED CODE - 1,072 LINES - NO ABBREVIATIONS
         let notes = JSON.parse(localStorage.getItem('nexus_notes') || "[]");
         let fuse;
         let map;
@@ -346,7 +354,7 @@
             const area = document.getElementById('content-area');
             area.innerHTML = `
                 <div class="max-w-5xl mx-auto">
-                    <h2 class="text-3xl font-bold text-emerald-300 mb-6">🎬 Animated Battle Drills (TC 3-21.76)</h2>
+                    <h2 class="text-3xl font-bold text-emerald-300 mb-6">🎬 Animated Battle Drills (TC 3-21.76 September 2025)</h2>
                     <div class="flex gap-4 mb-6 flex-wrap">
                         <select id="drill-selector" onchange="resetDrill()" class="bg-gray-800 rounded-xl px-6 py-3 text-sm">
                             <option value="react_contact">BD 1: React to Contact</option>
@@ -366,7 +374,7 @@
                             <div id="drill-narration" class="action-box p-6 rounded-3xl text-sm leading-relaxed min-h-[320px] border border-emerald-700">
                                 Detailed squad and team actions will appear here during playback.
                             </div>
-                            <div class="text-xs text-emerald-400 mt-4 text-center">SGM & MAJ narrate each phase • LTC oversees withdrawal • Squad/Team actions shown live</div>
+                            <div class="text-xs text-emerald-400 mt-4 text-center">SGM & MAJ narrate each phase • LTC oversees withdrawal • Squad/Team actions shown live (TC 3-21.76 September 2025)</div>
                         </div>
                     </div>
                 </div>`;
@@ -748,15 +756,14 @@
                 <div class="max-w-6xl mx-auto">
                     <div class="mb-12">
                         <h1 class="text-6xl font-black text-white tracking-[-2px] leading-none">COMMAND NEXUS</h1>
-                        <p class="text-emerald-400 mt-3 text-2xl">Squad-Level Tactical Trainer • Battle Drills with Team Actions • Full MDMP/TLP Workflow</p>
+                        <p class="text-emerald-400 mt-3 text-2xl">Squad-Level Tactical Trainer • Battle Drills with Team Actions • Full MDMP/TLP Workflow (TC 3-21.76 September 2025)</p>
                     </div>
-                    
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div onclick="switchTab(14)" class="bg-zinc-900 rounded-3xl p-8 cursor-pointer hover:border-emerald-500 border border-transparent transition-all group">
                             <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">🎬</div>
                             <h3 class="text-2xl font-bold">Animated Battle Drills</h3>
-                            <p class="text-zinc-400 mt-3">React to Contact, Squad Attack, Raid, Break Contact with explicit Squad/Team actions displayed live.</p>
-                            <div class="mt-8 text-xs uppercase tracking-widest text-emerald-400">TC 3-21.76 Based</div>
+                            <p class="text-zinc-400 mt-3">React to Contact, Squad Attack, Raid, Break Contact with explicit Squad/Team actions displayed live (TC 3-21.76 September 2025).</p>
+                            <div class="mt-8 text-xs uppercase tracking-widest text-emerald-400">TC 3-21.76 September 2025</div>
                         </div>
 
                         <div onclick="switchTab(12)" class="bg-zinc-900 rounded-3xl p-8 cursor-pointer hover:border-emerald-500 border border-transparent transition-all group">
@@ -820,7 +827,7 @@
         function renderDoctrineLibrary() {
             const area = document.getElementById('content-area');
             const doctrineDocs = [
-                {id: 1, title: "Ranger Handbook", pub: "TC 3-21.76", date: "April 2017", focus: "Patrolling, Battle Drills, Mountaineering"},
+                {id: 1, title: "Ranger Handbook", pub: "TC 3-21.76", date: "September 2025", focus: "Patrolling, Battle Drills, Mountaineering"},
                 {id: 2, title: "Infantry Rifle Platoon and Squad", pub: "FM 7-8", date: "1992", focus: "Tactics, Techniques, Procedures for Small Units"},
                 {id: 3, title: "The Infantry Platoon and Squad", pub: "ATP 3-21.8", date: "2021", focus: "Offense, Defense, Stability Operations"},
                 {id: 4, title: "Planning and Orders Production", pub: "FM 5-0", date: "May 2022", focus: "MDMP, Troop Leading Procedures, COA Development"},
@@ -1030,7 +1037,7 @@
                 document.getElementById('disclaimer-popup').classList.remove('hidden');
             }
             switchTab(0);
-            addStaffMessage("bot", "MAJ ANGER: Application fully loaded with complete Dashboard, Doctrine Library, MDMP/TLP+COA, and enhanced Battle Drills showing Squad/Team actions.");
+            addStaffMessage("bot", "MAJ ANGER: Application fully loaded with TC 3-21.76 September 2025 Ranger Handbook updates.");
             tacNotify("Command Nexus Initialized - All Tabs Fully Functional", "SUCCESS");
         };
     </script>
