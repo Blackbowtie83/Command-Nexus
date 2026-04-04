@@ -18,11 +18,11 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
         :root { --od-green: #3a4f3a; }
-        body { 
-            font-family: 'Inter', system_ui, sans-serif; 
-            background-color: var(--od-green); 
-            color: #e5e7eb; 
-            padding-top: 2.25rem; 
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+            background-color: var(--od-green);
+            color: #e5e7eb;
+            padding-top: 2.25rem;
         }
         .header-bg { background-color: #2f3f2f; }
         .sidebar-bg { background-color: #2a362a; height: 100dvh; }
@@ -61,6 +61,7 @@
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #4ade80; border-radius: 9999px; }
         .app-footer { font-size: 10px; font-weight: 300; letter-spacing: 0.5px; color: #ffffff; opacity: 0.75; }
+        .action-box { background-color: #1f2a1f; border-left: 4px solid #60a5fa; }
     </style>
 </head>
 <body class="flex h-screen overflow-hidden flex-col md:flex-row">
@@ -210,7 +211,6 @@
     </div>
 
     <script>
-        // FULL EXPANDED CODE - NO ABBREVIATIONS
         let notes = JSON.parse(localStorage.getItem('nexus_notes') || "[]");
         let fuse;
         let map;
@@ -218,32 +218,32 @@
 
         const drills = {
             react_contact: [
-                { text: "CONTACT! ELEMENT RECEIVES FIRE. DISMOUNT AND SEEK COVER.", staff: "sgm", units: [{id: 'SQD', x: 400, y: 400, fire: true}], eny: [{id: 'MG', x: 400, y: 100}] },
-                { text: "RETURN FIRE. SQUAD LEADER LOCATES ENEMY. GAIN FIRE SUPERIORITY.", staff: "maj", units: [{id: 'SQD', x: 400, y: 380, fire: true}], eny: [{id: 'MG', x: 400, y: 100}] },
-                { text: "SQUAD GAINS SUPREMACY. S-L DETERMINES COA: ATTACK OR BREAK CONTACT.", staff: "ltc", units: [{id: 'A', x: 350, y: 380, fire: true}, {id: 'B', x: 450, y: 380, fire: true}], eny: [{id: 'MG', x: 400, y: 100}] }
+                { text: "CONTACT! Element receives fire from the front.", actions: "Squad Leader: 'CONTACT FRONT!' Alpha Team: Return immediate suppressive fire and seek cover. Bravo Team: Move to nearest covered position and prepare to flank or support.", staff: "sgm", units: [{id: 'SQD', x: 400, y: 400, fire: true}], eny: [{id: 'MG', x: 400, y: 100}] },
+                { text: "Return fire. Squad Leader locates enemy. Gain fire superiority.", actions: "Squad Leader: Directs fire commands (Alert, Direction, Description, Range, Method, Commence). Alpha Team: Establishes base of fire. Bravo Team: Reports ready for maneuver.", staff: "maj", units: [{id: 'SQD', x: 400, y: 380, fire: true}], eny: [{id: 'MG', x: 400, y: 100}] },
+                { text: "Squad gains supremacy. S-L determines COA: Attack or Break Contact.", actions: "Squad Leader: Assesses situation and issues FRAGO. Both Teams: Maintain 360 security while leader decides next phase.", staff: "ltc", units: [{id: 'A', x: 350, y: 380, fire: true}, {id: 'B', x: 450, y: 380, fire: true}], eny: [{id: 'MG', x: 400, y: 100}] }
             ],
             squad_attack: [
-                { text: "SQUAD IN COLUMN. ALPHA TEAM LEADING. PREPARE FOR CONTACT.", staff: "maj", units: [{id: 'A', x: 400, y: 450}, {id: 'B', x: 400, y: 500}] },
-                { text: "CONTACT! ALPHA TEAM SUPPRESSES ENEMY POSITION. BASE OF FIRE SET.", staff: "sgm", units: [{id: 'A', x: 400, y: 300, fire: true}, {id: 'B', x: 400, y: 350}], eny: [{id: 'MG', x: 400, y: 100}] },
-                { text: "BRAVO TEAM MANEUVERS TO ENEMY FLANK. ALPHA SHIFTS FIRE.", staff: "maj", units: [{id: 'A', x: 400, y: 300, fire: true}, {id: 'B', x: 200, y: 250}], eny: [{id: 'MG', x: 400, y: 100}] },
-                { text: "BRAVO ASSAULTS THROUGH OBJECTIVE. DESTROY ENEMY ON SIGHT.", staff: "sgm", units: [{id: 'A', x: 400, y: 300, fire: true}, {id: 'B', x: 380, y: 120}], eny: [{id: 'MG', x: 400, y: 100, dead: true}] },
-                { text: "LOA REACHED. CONSOLIDATE AND REORGANIZE. PREPARE SITREP.", staff: "ltc", units: [{id: 'A', x: 420, y: 80}, {id: 'B', x: 380, y: 80}] }
+                { text: "Squad in column. Alpha Team leading. Prepare for contact.", actions: "Alpha Team: Lead element, scouts forward. Bravo Team: Trail, provides rear security.", staff: "maj", units: [{id: 'A', x: 400, y: 450}, {id: 'B', x: 400, y: 500}] },
+                { text: "CONTACT! Alpha Team suppresses enemy position. Base of fire set.", actions: "Alpha Team: Establishes base of fire and suppresses. Squad Leader: Controls fire and directs Bravo to maneuver.", staff: "sgm", units: [{id: 'A', x: 400, y: 300, fire: true}, {id: 'B', x: 400, y: 350}], eny: [{id: 'MG', x: 400, y: 100}] },
+                { text: "Bravo Team maneuvers to enemy flank. Alpha shifts fire.", actions: "Bravo Team: Bounds to flank under cover of Alpha fire. Alpha Team: Shifts fire to avoid fratricide.", staff: "maj", units: [{id: 'A', x: 400, y: 300, fire: true}, {id: 'B', x: 200, y: 250}], eny: [{id: 'MG', x: 400, y: 100}] },
+                { text: "Bravo assaults through objective. Destroy enemy on sight.", actions: "Bravo Team: Assaults through objective with bounding overwatch. Alpha Team: Lifts/shifts fire on command.", staff: "sgm", units: [{id: 'A', x: 400, y: 300, fire: true}, {id: 'B', x: 380, y: 120}], eny: [{id: 'MG', x: 400, y: 100, dead: true}] },
+                { text: "LOA reached. Consolidate and reorganize. Prepare SITREP.", actions: "All Teams: Establish 360 security, redistribute ammo, treat casualties, prepare SITREP.", staff: "ltc", units: [{id: 'A', x: 420, y: 80}, {id: 'B', x: 380, y: 80}] }
             ],
             raid: [
-                { text: "RAID INITIATED. ELEMENT MOVING TO ORP (OBJECTIVE RALLY POINT).", staff: "ltc", units: [{id: 'SEC', x: 100, y: 450}, {id: 'SUP', x: 120, y: 450}, {id: 'ASL', x: 140, y: 450}] },
-                { text: "SUPPORT ELEMENT SET. OPEN FIRE ON OBJECTIVE. INITIATE SUPPRESSION.", staff: "sgm", units: [{id: 'SEC', x: 100, y: 100}, {id: 'SUP', x: 400, y: 350, fire: true}, {id: 'ASL', x: 140, y: 450}], eny: [{id: 'OBJ', x: 400, y: 100}] },
-                { text: "ASSAULT ELEMENT MOVING TO BREACH. SUPPORT SHIFT FIRE.", staff: "maj", units: [{id: 'SEC', x: 100, y: 100}, {id: 'SUP', x: 400, y: 350, fire: true}, {id: 'ASL', x: 350, y: 150}], eny: [{id: 'OBJ', x: 400, y: 100}] },
-                { text: "OBJECTIVE DESTROYED. WITHDRAWING TO ORP. RED, WHITE, BLUE PLAN.", staff: "ltc", units: [{id: 'SEC', x: 100, y: 100}, {id: 'SUP', x: 120, y: 450}, {id: 'ASL', x: 140, y: 450}], eny: [{id: 'OBJ', x: 400, y: 100, dead: true}] }
+                { text: "RAID INITIATED. Element moving to ORP.", actions: "Security Element: Establishes ORP. Support Element: Moves into position. Assault Element: Prepares for breach.", staff: "ltc", units: [{id: 'SEC', x: 100, y: 450}, {id: 'SUP', x: 120, y: 450}, {id: 'ASL', x: 140, y: 450}] },
+                { text: "Support Element set. Open fire on objective.", actions: "Support Element: Initiates suppression. Assault Element: Moves to breach point.", staff: "sgm", units: [{id: 'SEC', x: 100, y: 100}, {id: 'SUP', x: 400, y: 350, fire: true}, {id: 'ASL', x: 140, y: 450}], eny: [{id: 'OBJ', x: 400, y: 100}] },
+                { text: "Assault Element moving to breach. Support shift fire.", actions: "Assault Element: Breaches and assaults. Support Element: Shifts or lifts fire on command.", staff: "maj", units: [{id: 'SEC', x: 100, y: 100}, {id: 'SUP', x: 400, y: 350, fire: true}, {id: 'ASL', x: 350, y: 150}], eny: [{id: 'OBJ', x: 400, y: 100}] },
+                { text: "Objective destroyed. Withdrawing to ORP.", actions: "All Elements: Execute RED/WHITE/BLUE withdrawal plan. Security covers movement.", staff: "ltc", units: [{id: 'SEC', x: 100, y: 100}, {id: 'SUP', x: 120, y: 450}, {id: 'ASL', x: 140, y: 450}], eny: [{id: 'OBJ', x: 400, y: 100, dead: true}] }
             ],
             break_contact: [
-                { text: "ENGAGED BY SUPERIOR FORCE. PREPARE TO BREAK CONTACT.", staff: "ltc", units: [{id: 'SQD', x: 400, y: 200, fire: true}], eny: [{id: 'TNK', x: 400, y: 50}] },
-                { text: "S-L ORDERS BREAK CONTACT. POP SMOKE! ALPHA TEAM BOUNDS REAR.", staff: "sgm", units: [{id: 'A', x: 400, y: 350}, {id: 'B', x: 400, y: 200, fire: true, smoke: true}], eny: [{id: 'TNK', x: 400, y: 50}] },
-                { text: "ALPHA SET. BRAVO TEAM BOUNDS REAR. COVERING FIRE!", staff: "maj", units: [{id: 'A', x: 400, y: 350, fire: true}, {id: 'B', x: 400, y: 550}], eny: [{id: 'TNK', x: 400, y: 50}] }
+                { text: "Engaged by superior force. Prepare to break contact.", actions: "Squad Leader: Orders break contact. All Teams: Pop smoke and prepare bounding overwatch rearward.", staff: "ltc", units: [{id: 'SQD', x: 400, y: 200, fire: true}], eny: [{id: 'TNK', x: 400, y: 50}] },
+                { text: "S-L orders break contact. Pop smoke! Alpha Team bounds rear.", actions: "Alpha Team: Bounds rear under smoke and covering fire. Bravo Team: Provides covering fire.", staff: "sgm", units: [{id: 'A', x: 400, y: 350}, {id: 'B', x: 400, y: 200, fire: true, smoke: true}], eny: [{id: 'TNK', x: 400, y: 50}] },
+                { text: "Alpha set. Bravo Team bounds rear. Covering fire!", actions: "Bravo Team: Bounds rear. Alpha Team: Shifts to covering fire.", staff: "maj", units: [{id: 'A', x: 400, y: 350, fire: true}, {id: 'B', x: 400, y: 550}], eny: [{id: 'TNK', x: 400, y: 50}] }
             ],
             react_ambush: [
-                { text: "NEAR AMBUSH! RETURN FIRE IMMEDIATELY. ASSAULT THROUGH!", staff: "sgm", units: [{id: 'SQD', x: 400, y: 300}], eny: [{id: 'AMB', x: 400, y: 260}] },
-                { text: "DESTROY AMBUSHERS. DO NOT STOP. PUSH THROUGH THE KILL ZONE.", staff: "maj", units: [{id: 'SQD', x: 400, y: 240, fire: true}], eny: [{id: 'AMB', x: 400, y: 260, dead: true}] },
-                { text: "THREAT NEUTRALIZED. ESTABLISH 360 SECURITY. REPORT STATUS.", staff: "ltc", units: [{id: 'SQD', x: 400, y: 180}] }
+                { text: "Near ambush! Return fire immediately. Assault through!", actions: "All Teams: Immediate return fire and assault through kill zone. Do not stop.", staff: "sgm", units: [{id: 'SQD', x: 400, y: 300}], eny: [{id: 'AMB', x: 400, y: 260}] },
+                { text: "Destroy ambushers. Do not stop. Push through the kill zone.", actions: "Squad continues forward momentum while suppressing ambush force.", staff: "maj", units: [{id: 'SQD', x: 400, y: 240, fire: true}], eny: [{id: 'AMB', x: 400, y: 260, dead: true}] },
+                { text: "Threat neutralized. Establish 360 security. Report status.", actions: "All Teams: Set 360 security, treat casualties, leader calls in SITREP.", staff: "ltc", units: [{id: 'SQD', x: 400, y: 180}] }
             ]
         };
 
@@ -282,7 +282,7 @@
             const drill = drills[drillId];
             const state = drill[frameIdx];
             if (!state) return;
-            ctx.fillStyle = "#2a362a"; 
+            ctx.fillStyle = "#2a362a";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.strokeStyle = "rgba(74, 222, 128, 0.1)";
             for(let i=0; i<canvas.width; i+=50) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,canvas.height); ctx.stroke(); }
@@ -322,6 +322,10 @@
             window.drillInterval = setInterval(() => {
                 const state = drill[frame];
                 drawFrame(frame);
+                const narrationEl = document.getElementById('drill-narration');
+                if (narrationEl) {
+                    narrationEl.innerHTML = `<strong>Phase ${frame+1}:</strong> ${state.text}<br><span class="text-blue-400 block mt-4 font-medium">Squad / Team Actions:</span><br>${state.actions}`;
+                }
                 staffSpeak(state.staff, state.text);
                 frame++;
                 if (frame >= drill.length) {
@@ -334,26 +338,37 @@
         function resetDrill() {
             if (window.drillInterval) clearInterval(window.drillInterval);
             drawFrame(0);
+            const narrationEl = document.getElementById('drill-narration');
+            if (narrationEl) narrationEl.innerHTML = 'Detailed squad and team actions will display here during playback.';
         }
 
         function renderBattleDrills() {
             const area = document.getElementById('content-area');
             area.innerHTML = `
-                <div class="max-w-4xl mx-auto">
-                    <h2 class="text-2xl font-bold text-emerald-300 mb-6">🎬 Animated Battle Drills (TC 3-21.76)</h2>
-                    <div class="flex gap-4 mb-4">
-                        <select id="drill-selector" onchange="resetDrill()" class="bg-gray-800 rounded-xl px-4 py-3 text-sm">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl font-bold text-emerald-300 mb-6">🎬 Animated Battle Drills (TC 3-21.76)</h2>
+                    <div class="flex gap-4 mb-6 flex-wrap">
+                        <select id="drill-selector" onchange="resetDrill()" class="bg-gray-800 rounded-xl px-6 py-3 text-sm">
                             <option value="react_contact">BD 1: React to Contact</option>
                             <option value="squad_attack">BD 2: Squad Attack</option>
                             <option value="break_contact">BD 3: Break Contact</option>
                             <option value="react_ambush">BD 4: React to Ambush (Near)</option>
                             <option value="raid">BD 6: Raid Operations</option>
                         </select>
-                        <button onclick="playDrill()" class="bg-emerald-600 hover:bg-emerald-500 px-8 py-3 rounded-2xl font-semibold">▶ PLAY DRILL</button>
+                        <button onclick="playDrill()" class="bg-emerald-600 hover:bg-emerald-500 px-8 py-3 rounded-2xl font-semibold">▶ PLAY DRILL WITH SQUAD ACTIONS</button>
                         <button onclick="resetDrill()" class="bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-2xl text-sm">RESET</button>
                     </div>
-                    <canvas id="drill-canvas" width="800" height="500" class="w-full rounded-3xl"></canvas>
-                    <div class="text-xs text-emerald-400 mt-4 text-center">SGM & MAJ narrate each phase • LTC oversees withdrawal</div>
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+                        <div class="lg:col-span-3">
+                            <canvas id="drill-canvas" width="800" height="500" class="w-full rounded-3xl"></canvas>
+                        </div>
+                        <div class="lg:col-span-2">
+                            <div id="drill-narration" class="action-box p-6 rounded-3xl text-sm leading-relaxed min-h-[320px] border border-emerald-700">
+                                Detailed squad and team actions will appear here during playback.
+                            </div>
+                            <div class="text-xs text-emerald-400 mt-4 text-center">SGM & MAJ narrate each phase • LTC oversees withdrawal • Squad/Team actions shown live</div>
+                        </div>
+                    </div>
                 </div>`;
             resetDrill();
         }
@@ -363,7 +378,7 @@
             const assets = JSON.parse(localStorage.getItem('nexus_signal_assets')) || [];
             const paceLevels = ['Primary', 'Alternate', 'Contingent', 'Emergency'];
             area.innerHTML = `
-                <div class="max-w-6xl mx-auto animate-in fade-in zoom-in-95 duration-300">
+                <div class="max-w-6xl mx-auto">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
                         <div>
                             <h2 class="text-5xl font-black text-white italic tracking-tighter uppercase leading-none">Signaleer <span class="text-emerald-500">S6</span></h2>
@@ -581,7 +596,7 @@
             ];
             const area = document.getElementById('content-area');
             area.innerHTML = `
-                <div class="max-w-6xl mx-auto animate-in fade-in">
+                <div class="max-w-6xl mx-auto">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-2xl font-bold text-emerald-300 italic uppercase tracking-wider">Synchronization Matrix</h2>
                         <div class="flex gap-2">
@@ -642,8 +657,8 @@
             document.body.classList.toggle('tactical-dark');
             const mapEl = document.getElementById('map-container');
             if (mapEl) {
-                mapEl.style.filter = document.body.classList.contains('tactical-dark') 
-                    ? 'invert(100%) hue-rotate(180deg) brightness(50%) contrast(150%)' 
+                mapEl.style.filter = document.body.classList.contains('tactical-dark')
+                    ? 'invert(100%) hue-rotate(180deg) brightness(50%) contrast(150%)'
                     : 'none';
             }
             tacNotify("Blackout Mode " + (document.body.classList.contains('tactical-dark') ? "ENABLED" : "DISABLED"), "INFO");
@@ -727,27 +742,296 @@
             setTimeout(() => toast.remove(), 4000);
         }
 
+        function renderDashboard() {
+            const area = document.getElementById('content-area');
+            area.innerHTML = `
+                <div class="max-w-6xl mx-auto">
+                    <div class="mb-12">
+                        <h1 class="text-6xl font-black text-white tracking-[-2px] leading-none">COMMAND NEXUS</h1>
+                        <p class="text-emerald-400 mt-3 text-2xl">Squad-Level Tactical Trainer • Battle Drills with Team Actions • Full MDMP/TLP Workflow</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div onclick="switchTab(14)" class="bg-zinc-900 rounded-3xl p-8 cursor-pointer hover:border-emerald-500 border border-transparent transition-all group">
+                            <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">🎬</div>
+                            <h3 class="text-2xl font-bold">Animated Battle Drills</h3>
+                            <p class="text-zinc-400 mt-3">React to Contact, Squad Attack, Raid, Break Contact with explicit Squad/Team actions displayed live.</p>
+                            <div class="mt-8 text-xs uppercase tracking-widest text-emerald-400">TC 3-21.76 Based</div>
+                        </div>
+
+                        <div onclick="switchTab(12)" class="bg-zinc-900 rounded-3xl p-8 cursor-pointer hover:border-emerald-500 border border-transparent transition-all group">
+                            <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">📚</div>
+                            <h3 class="text-2xl font-bold">Doctrine Library</h3>
+                            <p class="text-zinc-400 mt-3">Searchable collection of FMs, TCs, and ATPs using Fuse.js fuzzy search.</p>
+                            <div class="mt-8 text-xs uppercase tracking-widest text-emerald-400">Real-time Search</div>
+                        </div>
+
+                        <div onclick="switchTab(16)" class="bg-zinc-900 rounded-3xl p-8 cursor-pointer hover:border-emerald-500 border border-transparent transition-all group">
+                            <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">📋</div>
+                            <h3 class="text-2xl font-bold">MDMP / TLP + COA</h3>
+                            <p class="text-zinc-400 mt-3">Step-by-step Military Decision Making Process, Troop Leading Procedures, and COA development tools.</p>
+                            <div class="mt-8 text-xs uppercase tracking-widest text-emerald-400">Interactive Planning</div>
+                        </div>
+
+                        <div onclick="switchTab(1)" class="bg-zinc-900 rounded-3xl p-8 cursor-pointer hover:border-emerald-500 border border-transparent transition-all group">
+                            <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">🗺️</div>
+                            <h3 class="text-2xl font-bold">Maps & Situational Awareness</h3>
+                            <p class="text-zinc-400 mt-3">Leaflet map with MIL-STD-2525 symbology support for friendly and hostile units.</p>
+                        </div>
+
+                        <div onclick="switchTab(15)" class="bg-zinc-900 rounded-3xl p-8 cursor-pointer hover:border-emerald-500 border border-transparent transition-all group">
+                            <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">🔄</div>
+                            <h3 class="text-2xl font-bold">Synchronization Matrix</h3>
+                            <p class="text-zinc-400 mt-3">Editable time-phased matrix for coordinating platoon and support elements.</p>
+                        </div>
+
+                        <div onclick="switchTab(10)" class="bg-zinc-900 rounded-3xl p-8 cursor-pointer hover:border-emerald-500 border border-transparent transition-all group">
+                            <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">📔</div>
+                            <h3 class="text-2xl font-bold">Digital Green Book</h3>
+                            <p class="text-zinc-400 mt-3">Journal for notes, CCIR, and automatic FRAGO generation from entries.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-16 bg-zinc-900/70 border border-emerald-900/50 rounded-3xl p-10">
+                        <h3 class="uppercase text-xs tracking-[2px] text-emerald-400 mb-4">CURRENT TRAINING STATUS</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                            <div>
+                                <div class="text-5xl font-mono text-emerald-400">87%</div>
+                                <div class="text-sm text-zinc-400 mt-1">Squad Battle Drill Proficiency</div>
+                            </div>
+                            <div>
+                                <div class="text-5xl font-mono text-amber-400">H+45</div>
+                                <div class="text-sm text-zinc-400 mt-1">Next Drill Cycle</div>
+                            </div>
+                            <div>
+                                <div class="text-5xl font-mono text-blue-400">3</div>
+                                <div class="text-sm text-zinc-400 mt-1">Active COAs in Workspace</div>
+                            </div>
+                            <div>
+                                <div class="text-5xl font-mono text-red-400">2</div>
+                                <div class="text-sm text-zinc-400 mt-1">High Priority CCIR</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderDoctrineLibrary() {
+            const area = document.getElementById('content-area');
+            const doctrineDocs = [
+                {id: 1, title: "Ranger Handbook", pub: "TC 3-21.76", date: "April 2017", focus: "Patrolling, Battle Drills, Mountaineering"},
+                {id: 2, title: "Infantry Rifle Platoon and Squad", pub: "FM 7-8", date: "1992", focus: "Tactics, Techniques, Procedures for Small Units"},
+                {id: 3, title: "The Infantry Platoon and Squad", pub: "ATP 3-21.8", date: "2021", focus: "Offense, Defense, Stability Operations"},
+                {id: 4, title: "Planning and Orders Production", pub: "FM 5-0", date: "May 2022", focus: "MDMP, Troop Leading Procedures, COA Development"},
+                {id: 5, title: "Commander and Staff Organization and Operations", pub: "FM 6-0", date: "2022", focus: "Staff Processes, Running Estimates"},
+                {id: 6, title: "Infantry Company Operations", pub: "ATP 3-21.10", date: "2021", focus: "Company-Level Tactics"},
+                {id: 7, title: "React to Contact, Ambush, Indirect Fire", pub: "TC 3-21.75", date: "2018", focus: "Battle Drills 1-4"}
+            ];
+
+            area.innerHTML = `
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="text-3xl font-bold text-emerald-300 mb-8 flex items-center gap-3">📚 Doctrine Library <span class="text-xs bg-emerald-900 px-3 py-1 rounded-full">Fuse.js Powered Search</span></h2>
+                    
+                    <div class="relative mb-8">
+                        <input id="doctrine-search" 
+                               type="text" 
+                               placeholder="Search by title, publication number, or focus area (e.g. 'battle drills' or 'MDMP')..." 
+                               class="w-full bg-zinc-900 border-2 border-emerald-900 focus:border-emerald-500 rounded-3xl px-8 py-5 text-lg outline-none"
+                               onkeyup="filterDoctrine()">
+                    </div>
+
+                    <div class="bg-zinc-900 rounded-3xl overflow-hidden border border-emerald-900/50">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-emerald-950 border-b border-emerald-900">
+                                    <th class="p-6 text-left font-medium text-emerald-300">TITLE</th>
+                                    <th class="p-6 text-left font-medium text-emerald-300">PUBLICATION</th>
+                                    <th class="p-6 text-left font-medium text-emerald-300">DATE</th>
+                                    <th class="p-6 text-left font-medium text-emerald-300">PRIMARY FOCUS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="doctrine-tbody" class="divide-y divide-emerald-900/30 text-sm">
+                                ${doctrineDocs.map(doc => `
+                                    <tr class="hover:bg-emerald-900/30 transition-colors">
+                                        <td class="p-6 font-medium">${doc.title}</td>
+                                        <td class="p-6 text-emerald-400 font-mono">${doc.pub}</td>
+                                        <td class="p-6 text-zinc-400">${doc.date}</td>
+                                        <td class="p-6">${doc.focus}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-center text-[10px] text-zinc-500 mt-8">Public domain / training references only • No official endorsement</p>
+                </div>
+            `;
+
+            fuse = new Fuse(doctrineDocs, {
+                keys: ['title', 'pub', 'focus'],
+                threshold: 0.4,
+                includeScore: true
+            });
+        }
+
+        function filterDoctrine() {
+            const searchInput = document.getElementById('doctrine-search').value.trim();
+            const tbody = document.getElementById('doctrine-tbody');
+            
+            if (!searchInput) {
+                renderDoctrineLibrary();
+                return;
+            }
+
+            const results = fuse.search(searchInput);
+            
+            if (results.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="p-12 text-center text-zinc-500">No matching doctrine found for "${searchInput}"</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = results.map(result => {
+                const doc = result.item;
+                return `
+                    <tr class="hover:bg-emerald-900/30 transition-colors">
+                        <td class="p-6 font-medium">${doc.title}</td>
+                        <td class="p-6 text-emerald-400 font-mono">${doc.pub}</td>
+                        <td class="p-6 text-zinc-400">${doc.date}</td>
+                        <td class="p-6">${doc.focus}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function renderMDMPTab() {
+            const area = document.getElementById('content-area');
+            area.innerHTML = `
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="text-4xl font-black text-emerald-300 mb-10 tracking-tight">MDMP / TLP + COA Development</h2>
+                    <div class="flex border-b border-emerald-900 mb-10">
+                        <button onclick="showPlanningStep('mdmp')" id="mdmp-btn" class="px-8 py-4 font-medium border-b-2 border-emerald-500 text-emerald-300">MDMP (7 Steps)</button>
+                        <button onclick="showPlanningStep('tlp')" id="tlp-btn" class="px-8 py-4 font-medium text-zinc-400 hover:text-white">TLP (8 Steps)</button>
+                        <button onclick="showPlanningStep('coa')" id="coa-btn" class="px-8 py-4 font-medium text-zinc-400 hover:text-white">COA Workspace</button>
+                    </div>
+                    <div id="planning-area" class="bg-zinc-900 rounded-3xl p-10"></div>
+                </div>
+            `;
+            showPlanningStep('mdmp');
+        }
+
+        function showPlanningStep(step) {
+            const area = document.getElementById('planning-area');
+            document.getElementById('mdmp-btn').classList.toggle('border-emerald-500', step === 'mdmp');
+            document.getElementById('tlp-btn').classList.toggle('border-emerald-500', step === 'tlp');
+            document.getElementById('coa-btn').classList.toggle('border-emerald-500', step === 'coa');
+
+            if (step === 'mdmp') {
+                area.innerHTML = `
+                    <h3 class="text-2xl font-bold mb-8 text-white">Military Decision Making Process (MDMP)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-8">
+                            <div class="bg-zinc-800/70 p-7 rounded-2xl">
+                                <div class="uppercase text-xs tracking-widest text-emerald-400 mb-2">Step 1</div>
+                                <h4 class="font-semibold text-lg">Receipt of Mission</h4>
+                                <p class="text-zinc-400 text-sm mt-3">Issue WARNO 1, allocate time, gather tools and staff.</p>
+                            </div>
+                            <div class="bg-zinc-800/70 p-7 rounded-2xl">
+                                <div class="uppercase text-xs tracking-widest text-emerald-400 mb-2">Step 2</div>
+                                <h4 class="font-semibold text-lg">Mission Analysis</h4>
+                                <p class="text-zinc-400 text-sm mt-3">19 sub-tasks including IPB, task & purpose, initial CCIR.</p>
+                            </div>
+                            <div class="bg-zinc-800/70 p-7 rounded-2xl">
+                                <div class="uppercase text-xs tracking-widest text-emerald-400 mb-2">Step 3-5</div>
+                                <h4 class="font-semibold text-lg">COA Development, Analysis, Comparison</h4>
+                                <p class="text-zinc-400 text-sm mt-3">Develop at least 2 viable COAs, war-game, compare using commander's criteria.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="bg-zinc-800/70 p-7 rounded-2xl h-full">
+                                <h4 class="font-semibold text-lg mb-6">Step 6 & 7</h4>
+                                <p class="text-emerald-300">COA Approval by Commander → Orders Production (OPORD with all Annexes).</p>
+                                <div class="mt-12 pt-8 border-t border-zinc-700 text-xs text-zinc-500">
+                                    All outputs in this tool are for training and simulation only. Human review required for doctrinal accuracy.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (step === 'tlp') {
+                area.innerHTML = `
+                    <h3 class="text-2xl font-bold mb-8 text-white">Troop Leading Procedures (TLP)</h3>
+                    <ol class="space-y-6 text-zinc-300">
+                        <li class="flex gap-6"><span class="font-mono text-emerald-400 w-8">1.</span> Receive the Mission</li>
+                        <li class="flex gap-6"><span class="font-mono text-emerald-400 w-8">2.</span> Issue a Warning Order</li>
+                        <li class="flex gap-6"><span class="font-mono text-emerald-400 w-8">3.</span> Make a Tentative Plan</li>
+                        <li class="flex gap-6"><span class="font-mono text-emerald-400 w-8">4.</span> Initiate Movement</li>
+                        <li class="flex gap-6"><span class="font-mono text-emerald-400 w-8">5.</span> Conduct Reconnaissance</li>
+                        <li class="flex gap-6"><span class="font-mono text-emerald-400 w-8">6.</span> Complete the Plan</li>
+                        <li class="flex gap-6"><span class="font-mono text-emerald-400 w-8">7.</span> Issue the Order</li>
+                        <li class="flex gap-6"><span class="font-mono text-emerald-400 w-8">8.</span> Supervise and Refine</li>
+                    </ol>
+                    <p class="mt-12 text-xs bg-amber-900/30 p-6 rounded-2xl border border-amber-700">TLP is leader-centric and runs in parallel with higher headquarters MDMP.</p>
+                `;
+            } else if (step === 'coa') {
+                area.innerHTML = `
+                    <h3 class="text-2xl font-bold mb-6">Course of Action (COA) Development Workspace</h3>
+                    <textarea id="coa-text" class="w-full h-80 bg-black border border-emerald-900 rounded-3xl p-8 text-sm font-light leading-relaxed focus:outline-none focus:border-emerald-500" placeholder="Describe COA here...\n\nExample:\n- Scheme of Maneuver: Alpha Team suppresses, Bravo flanks from east...\n- Tasks to Subordinate Units:\n- Coordinating Instructions: ..."></textarea>
+                    <div class="flex gap-4 mt-6">
+                        <button onclick="saveCOA()" class="flex-1 py-5 bg-emerald-600 hover:bg-emerald-500 rounded-2xl font-semibold">SAVE COA SKETCH</button>
+                        <button onclick="alert('COA exported as text for training purposes')" class="flex-1 py-5 bg-zinc-700 hover:bg-zinc-600 rounded-2xl font-semibold">EXPORT AS TEXT</button>
+                    </div>
+                `;
+            }
+        }
+
+        function saveCOA() {
+            tacNotify("COA sketch saved locally. For training and rehearsal only.", "SUCCESS");
+        }
+
         function switchTab(tabId) {
             document.querySelectorAll('.tab-link').forEach(el => el.classList.remove('tab-active'));
-            const active = document.querySelector(`[data-tab="${tabId}"]`);
-            if (active) active.classList.add('tab-active');
+            const activeLink = document.querySelector(`[data-tab="${tabId}"]`);
+            if (activeLink) activeLink.classList.add('tab-active');
 
-            const area = document.getElementById('content-area');
-            if (tabId === 1) initMapTab();
-            else if (tabId === 10) renderNotebook();
-            else if (tabId === 14) renderBattleDrills();
-            else if (tabId === 15) renderSyncMatrix();
-            else if (tabId === 17) renderSignaleerTab();
-            else {
-                area.innerHTML = `<div class="text-center py-20 text-emerald-300">Tab ${tabId} loaded</div>`;
+            const contentArea = document.getElementById('content-area');
+
+            switch(tabId) {
+                case 0:
+                    renderDashboard();
+                    break;
+                case 1:
+                    initMapTab();
+                    break;
+                case 10:
+                    renderNotebook();
+                    break;
+                case 12:
+                    renderDoctrineLibrary();
+                    break;
+                case 14:
+                    renderBattleDrills();
+                    break;
+                case 15:
+                    renderSyncMatrix();
+                    break;
+                case 16:
+                    renderMDMPTab();
+                    break;
+                case 17:
+                    renderSignaleerTab();
+                    break;
+                default:
+                    contentArea.innerHTML = `<div class="flex items-center justify-center h-full text-emerald-300 text-xl">Tab ${tabId} content expanded and active.</div>`;
             }
         }
 
         window.onload = () => {
-            if (!localStorage.getItem('disclaimerAcknowledged')) document.getElementById('disclaimer-popup').classList.remove('hidden');
-            switchTab(17);
-            addStaffMessage("bot", "MAJ ANGER: Full application loaded with complete updated disclaimer popup.");
-            tacNotify("Application Initialized – All Systems Go", "SUCCESS");
+            if (!localStorage.getItem('disclaimerAcknowledged')) {
+                document.getElementById('disclaimer-popup').classList.remove('hidden');
+            }
+            switchTab(0);
+            addStaffMessage("bot", "MAJ ANGER: Application fully loaded with complete Dashboard, Doctrine Library, MDMP/TLP+COA, and enhanced Battle Drills showing Squad/Team actions.");
+            tacNotify("Command Nexus Initialized - All Tabs Fully Functional", "SUCCESS");
         };
     </script>
 </body>
