@@ -13,6 +13,6 @@ Fully client-side (localStorage only) with zero external data transmission.
 - Professional print-ready output
 - Mobile responsive tactical interface
 
-Live Demo: [Your Vercel URL will go here]
+Live Demo: TBP
 
 Strictly for training and instructional purposes.
